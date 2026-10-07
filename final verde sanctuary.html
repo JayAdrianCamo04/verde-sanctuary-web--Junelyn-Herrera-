@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verde Sanctuary — Eco-Lodge & Marine Learning Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ocean:#0B3D4E;--tide:#1A6B7C;--foam:#EAF4F4;--sand:#F5EFE0;--kelp:#2D5A27;--coral:#C45C3A;--white:#FFFFFF;--ink:#0D1F22;--mist:#7A9EA8;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(11,61,78,.97);box-shadow:0 1px 20px rgba(0,0,0,.2)}
+.nav-logo{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--white);text-decoration:none}
+.nav-logo span{color:#7ecfc0;font-style:italic}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.82rem;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:#7ecfc0}
+.nav-cta{background:#7ecfc0;color:var(--ink);padding:.45rem 1.1rem;border-radius:2rem;font-size:.8rem;font-weight:500;text-decoration:none;transition:background .2s}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px}
+.nav-toggle span{display:block;width:24px;height:1.5px;background:var(--white)}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--ocean);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--white);text-decoration:none;font-family:var(--serif);font-size:2rem}
+.mobile-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
+#home{min-height:100vh;background:linear-gradient(165deg,#0B3D4E 0%,#0e5566 45%,#1a7a6e 100%);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 30 Q15 10 30 30 Q45 50 60 30' fill='none' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E");background-size:60px 60px}
+.hero-wave{position:absolute;bottom:0;left:0;right:0;height:100px;background:var(--white);clip-path:ellipse(55% 100% at 50% 100%)}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:2rem}
+.hero-badge{display:inline-block;border:1px solid rgba(126,207,192,.5);color:#7ecfc0;font-size:.75rem;letter-spacing:.12em;padding:.35rem 1.2rem;border-radius:2rem;margin-bottom:2rem}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,8vw,6rem);font-weight:300;color:var(--white);line-height:1.05;margin-bottom:1rem}
+.hero-title em{font-style:italic;color:#7ecfc0}
+.hero-tagline{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:rgba(255,255,255,.7);margin-bottom:2.5rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:#7ecfc0;color:var(--ink);padding:.8rem 2rem;border-radius:2rem;text-decoration:none;font-weight:500;font-size:.9rem;transition:background .2s}
+.btn-outline{border:1px solid rgba(255,255,255,.5);color:var(--white);padding:.8rem 2rem;border-radius:2rem;text-decoration:none;font-size:.9rem;transition:border-color .2s}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
+.hero-scroll{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.5);font-size:.75rem;letter-spacing:.08em}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent)}
+section{padding:6rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.75rem;letter-spacing:.14em;color:var(--mist);font-weight:400;margin-bottom:.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.15;margin-bottom:1.5rem;color:var(--ocean)}
+.section-title em{font-style:italic;color:var(--tide)}
+.section-body{font-size:1rem;color:#4a6670;line-height:1.75;max-width:58ch}
+#about{background:var(--foam)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-card{background:var(--ocean);border-radius:16px;padding:2.5rem;color:var(--white);position:relative;overflow:hidden}
+.about-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(126,207,192,.08)}
+.about-card-title{font-family:var(--serif);font-size:1.6rem;font-weight:300;line-height:1.2;margin-bottom:1rem;font-style:italic}
+.about-card-body{font-size:.875rem;opacity:.8;line-height:1.7;margin-bottom:1.5rem}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.stat{border-top:1px solid rgba(255,255,255,.15);padding-top:1rem}
+.stat-num{font-family:var(--serif);font-size:2rem;font-weight:300;color:#7ecfc0}
+.stat-label{font-size:.75rem;opacity:.65;line-height:1.4}
+.about-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+.atag{background:rgba(126,207,192,.12);color:#7ecfc0;font-size:.72rem;padding:.3rem .9rem;border-radius:2rem;border:1px solid rgba(126,207,192,.2)}
+.values-list{list-style:none;margin-top:2rem}
+.values-list li{padding:.75rem 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;color:#3d5c65;display:flex;gap:.75rem}
+.values-list li::before{content:'—';color:#7ecfc0;flex-shrink:0}
+#experience{background:var(--white)}
+.exp-intro,.pkg-intro{max-width:600px;margin-bottom:4rem}
+.exp-grid,.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.exp-card{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:2rem;transition:border-color .2s,box-shadow .2s}
+.exp-card:hover{border-color:#7ecfc0;box-shadow:0 4px 24px rgba(0,0,0,.07)}
+.exp-icon{width:40px;height:40px;border-radius:8px;background:var(--foam);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.2rem}
+.exp-name{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ocean);margin-bottom:.5rem}
+.exp-desc{font-size:.875rem;color:#5a7880;line-height:1.65;margin-bottom:1rem}
+.exp-detail{font-size:.78rem;color:var(--mist);display:flex;gap:1rem}
+#packages{background:var(--sand)}
+.pkg-card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.pkg-header{background:var(--ocean);padding:2rem;color:var(--white)}
+.pkg-header.tide{background:var(--tide)}
+.pkg-header.kelp{background:var(--kelp)}
+.pkg-tag{font-size:.7rem;letter-spacing:.08em;opacity:.65;margin-bottom:.5rem}
+.pkg-name{font-family:var(--serif);font-size:1.4rem;font-weight:300;font-style:italic;margin-bottom:.25rem}
+.pkg-duration{font-size:.8rem;opacity:.7}
+.pkg-price{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:#7ecfc0;margin-top:.75rem}
+.pkg-price span{font-size:.85rem;color:rgba(255,255,255,.6);font-family:var(--sans)}
+.pkg-body{padding:2rem}
+.pkg-desc{font-size:.875rem;color:#5a7880;line-height:1.65;margin-bottom:1.5rem}
+.pkg-list{list-style:none}
+.pkg-list li{font-size:.82rem;color:#4a6670;padding:.4rem 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;gap:.5rem}
+.pkg-list li::before{content:'✓';color:#7ecfc0;font-weight:500;flex-shrink:0}
+.pkg-excl{font-size:.75rem;color:#9ab0b7;margin-top:.75rem;font-style:italic}
+.pkg-cta{display:block;text-align:center;margin:1.5rem 2rem 2rem;background:var(--ocean);color:var(--white);padding:.7rem;border-radius:2rem;text-decoration:none;font-size:.85rem;transition:background .2s}
+.pkg-note{font-size:.78rem;color:var(--mist);margin-top:.5rem}
+#story{background:var(--ocean);color:var(--white)}
+#story .section-title{color:var(--white)}
+#story .section-label{color:#7ecfc0}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.story-text .section-body{color:rgba(255,255,255,.75);max-width:none}
+.timeline{margin-top:3rem;position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:rgba(126,207,192,.3)}
+.tl-item{margin-bottom:2rem;position:relative}
+.tl-item::before{content:'';position:absolute;left:-1.875rem;top:6px;width:8px;height:8px;border-radius:50%;background:#7ecfc0}
+.tl-year{font-size:.75rem;color:#7ecfc0;letter-spacing:.1em;margin-bottom:.25rem}
+.tl-event{font-family:var(--serif);font-size:1rem;font-style:italic;color:rgba(255,255,255,.9);margin-bottom:.25rem}
+.tl-detail{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6}
+.story-quote{border-left:3px solid #7ecfc0;padding:1.5rem;background:rgba(255,255,255,.05);border-radius:0 8px 8px 0;margin-top:3rem}
+.story-quote p{font-family:var(--serif);font-size:1.25rem;font-style:italic;color:rgba(255,255,255,.85);line-height:1.5}
+.story-quote cite{font-size:.78rem;color:#7ecfc0;display:block;margin-top:.75rem}
+#gallery{background:var(--white)}
+.gallery-intro{max-width:600px;margin-bottom:3rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery-item{border-radius:10px;overflow:hidden;background:var(--foam);position:relative}
+.gallery-item.tall{grid-row:span 2}
+.gallery-item.wide{grid-column:span 2}
+.gallery-ph{width:100%;height:190px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;color:var(--mist);font-size:.78rem}
+.gallery-item.tall .gallery-ph{height:392px}
+.gallery-ph-icon{font-size:1.8rem;opacity:.5}
+.gallery-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(11,61,78,.8));padding:.75rem;color:var(--white);font-size:.72rem}
+#guide{background:var(--foam)}
+.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem}
+.guide-card{background:var(--white);border-radius:12px;padding:1.75rem}
+.guide-card-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ocean);margin-bottom:1rem}
+.guide-list{list-style:none}
+.guide-list li{font-size:.875rem;color:#4a6670;padding:.4rem 0;border-bottom:1px solid rgba(0,0,0,.05);line-height:1.5}
+.guide-list li:last-child{border-bottom:none}
+.guide-budget{background:var(--ocean);color:var(--white);border-radius:12px;padding:1.75rem;grid-column:span 2}
+.budget-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+.budget-item{text-align:center}
+.budget-label{font-size:.75rem;opacity:.6;margin-bottom:.25rem}
+.budget-amount{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:#7ecfc0}
+#booking{background:var(--white)}
+.booking-grid,.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.booking-info h3{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:var(--ocean);margin-bottom:.75rem;margin-top:1.5rem}
+.booking-info h3:first-of-type{margin-top:0}
+.booking-info p,.booking-info li{font-size:.875rem;color:#4a6670;line-height:1.7}
+.booking-info ul{list-style:none;margin-top:.5rem}
+.booking-info ul li{display:flex;gap:.5rem;padding:.3rem 0}
+.booking-info ul li::before{content:'→';color:#7ecfc0}
+form{background:var(--foam);border-radius:16px;padding:2.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{margin-bottom:1.25rem}
+label{display:block;font-size:.8rem;color:var(--ocean);margin-bottom:.4rem;font-weight:500}
+input,select,textarea{width:100%;padding:.7rem 1rem;border:1px solid rgba(0,0,0,.12);border-radius:8px;font-family:var(--sans);font-size:.9rem;color:var(--ink);background:var(--white);outline:none}
+textarea{resize:vertical;min-height:90px}
+.form-note{font-size:.73rem;color:var(--mist);margin-bottom:1.25rem;line-height:1.5}
+.btn-submit{width:100%;background:var(--ocean);color:var(--white);border:none;padding:.9rem;border-radius:2rem;font-family:var(--sans);font-size:.9rem;font-weight:500;cursor:pointer;transition:background .2s}
+#contact{background:var(--sand)}
+.contact-grid{gap:5rem}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.contact-item{display:flex;gap:1rem;align-items:flex-start}
+.contact-icon{width:36px;height:36px;border-radius:8px;background:rgba(11,61,78,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-item-label{font-size:.73rem;color:var(--mist);margin-bottom:.2rem}
+.contact-item-value{font-size:.875rem;color:var(--ink);line-height:1.5}
+.social-links{display:flex;gap:.6rem;margin-top:.5rem}
+.social-link{width:32px;height:32px;border-radius:50%;background:var(--ocean);color:var(--white);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:.7rem;font-weight:500;transition:background .2s}
+.social-link:hover{background:var(--tide)}
+.contact-hours{background:var(--white);border-radius:12px;padding:1.5rem;margin-top:1.5rem}
+.contact-hours h4{font-family:var(--serif);font-size:1rem;color:var(--ocean);margin-bottom:.75rem}
+.hours-row{display:flex;justify-content:space-between;font-size:.85rem;color:#4a6670;padding:.3rem 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.contact-form-wrap form{margin-top:1.5rem;background:var(--white);padding:2rem;border-radius:16px}
+#faq{background:var(--white)}
+.faq-intro{max-width:600px;margin-bottom:3rem}
+.faq-list{max-width:760px}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.08)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:1.25rem 0;font-family:var(--sans);font-size:.95rem;color:var(--ocean);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq-q:hover{color:var(--tide)}
+.faq-arrow{color:var(--mist);transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a p{font-size:.875rem;color:#4a6670;line-height:1.75;padding-bottom:1.25rem}
+.disclaimer{background:#0a2d38;padding:3rem 2rem}
+.disclaimer-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto}
+.disc-title{font-size:.7rem;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:.75rem;text-transform:uppercase}
+.disc-text{color:rgba(255,255,255,.45);font-size:.78rem;line-height:1.7}
+footer{background:var(--ink);padding:2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--serif);font-size:1rem;color:var(--white);font-style:italic}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{color:rgba(255,255,255,.45);font-size:.78rem;text-decoration:none;transition:color .2s}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3)}
+.academic-badge{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--ocean);color:var(--white);border-radius:10px;padding:.6rem 1rem;font-size:.7rem;line-height:1.5;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;max-width:190px}
+.academic-badge strong{display:block;color:#7ecfc0;margin-bottom:.1rem}
+.success-msg{display:none;margin-top:1rem;background:rgba(45,90,39,.1);border:1px solid rgba(45,90,39,.3);border-radius:8px;padding:1rem;font-size:.85rem;color:var(--kelp);text-align:center}
+@media(max-width:900px){.about-grid,.story-grid,.booking-grid,.contact-grid{grid-template-columns:1fr}.exp-grid,.pkg-grid{grid-template-columns:1fr 1fr}.gallery-grid{grid-template-columns:1fr 1fr}.gallery-item.wide,.guide-budget{grid-column:span 1}.gallery-item.tall{grid-row:span 1}.gallery-item.tall .gallery-ph{height:190px}.budget-grid{grid-template-columns:repeat(2,1fr)}.disclaimer-grid{grid-template-columns:1fr}}
+@media(max-width:600px){nav{padding:1rem}.nav-links,.nav-cta{display:none}.nav-toggle{display:flex}section{padding:4rem 1.25rem}.exp-grid,.pkg-grid,.form-row{grid-template-columns:1fr}.guide-grid{grid-template-columns:1fr}.guide-budget{grid-column:span 1}.footer-inner{flex-direction:column;text-align:center}.hero-title{font-size:2.8rem}.gallery-grid{grid-template-columns:1fr}}
+
+/* ===== VERDE SANCTUARY — STYLE UPGRADE =====
+*/
+/* ===== FAQ UPGRADE ===== */
+#faq{position:relative;background:linear-gradient(180deg,#fff 0%,#f3f9f8 100%);overflow:hidden}
+#faq::before{content:'';position:absolute;top:-120px;right:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(126,207,192,.25),transparent 70%)}
+#faq .container{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:4rem;align-items:start}
+#faq .faq-intro{max-width:none;margin:0;position:sticky;top:6rem}
+#faq .faq-list{max-width:none;counter-reset:faq;display:flex;flex-direction:column;gap:.85rem}
+.faq-help{margin-top:2rem;padding:1.75rem;border-radius:18px;color:#fff;background:linear-gradient(145deg,#0B3D4E,#17776c);box-shadow:0 24px 50px -22px rgba(11,61,78,.6);position:relative;overflow:hidden}
+.faq-help::after{content:'';position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08)}
+.faq-help-icon{font-size:1.6rem;margin-bottom:.5rem}
+.faq-help h3{font-family:var(--serif);font-size:1.5rem;font-weight:400;font-style:italic;margin-bottom:.4rem}
+.faq-help p{font-size:.85rem;opacity:.8;margin-bottom:1.1rem;line-height:1.6}
+.faq-help-btn{display:inline-block;background:linear-gradient(135deg,#8fe0d0,#5bb8a8);color:#0D1F22;padding:.6rem 1.4rem;border-radius:2rem;font-size:.82rem;font-weight:500;text-decoration:none;transition:transform .25s,box-shadow .25s}
+.faq-help-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+#faq .faq-item{counter-increment:faq;background:#fff;border:1px solid rgba(26,107,124,.1);border-radius:16px;padding:0 1.4rem;box-shadow:0 2px 12px rgba(11,61,78,.04);transition:box-shadow .3s,border-color .3s,transform .3s;position:relative;overflow:hidden}
+#faq .faq-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#7ecfc0,#1A6B7C);transform:scaleY(0);transform-origin:top;transition:transform .35s}
+#faq .faq-item:hover{box-shadow:0 14px 32px -14px rgba(11,61,78,.25);transform:translateY(-2px)}
+#faq .faq-item.open{padding-left:1.4rem;background:#fff;border-color:#7ecfc0;box-shadow:0 18px 40px -16px rgba(26,107,124,.35)}
+#faq .faq-item.open::before{transform:scaleY(1)}
+#faq .faq-q{padding:1.2rem 0;gap:1rem;font-weight:500;font-size:1rem;line-height:1.4}
+#faq .faq-q::before{content:counter(faq,decimal-leading-zero);font-family:var(--serif);font-size:1.5rem;font-style:italic;font-weight:300;color:#7ecfc0;min-width:2.2rem}
+#faq .faq-q{justify-content:flex-start}
+#faq .faq-arrow{margin-left:auto;width:32px;height:32px;border-radius:50%;background:#EAF4F4;color:var(--tide);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:transform .3s,background .3s,color .3s}
+#faq .faq-item.open .faq-arrow{background:linear-gradient(135deg,#1A6B7C,#2a9a8b);color:#fff}
+#faq .faq-a p{padding:0 0 1.3rem 3.2rem;color:#4a6670}
+@media(max-width:900px){
+  #faq .container{grid-template-columns:1fr;gap:2.5rem}
+  #faq .faq-intro{position:static}
+}
+@media(max-width:600px){
+  #faq .faq-item{padding:0 1rem}
+  #faq .faq-q::before{font-size:1.2rem;min-width:1.8rem}
+  #faq .faq-a p{padding-left:0}
+}
+
+::selection{background:#7ecfc0;color:#0D1F22}
+html{scrollbar-color:#1A6B7C #EAF4F4}
+body{-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid #7ecfc0;outline-offset:3px;border-radius:4px}
+
+/* NAV — glass effect */
+nav{padding:1.1rem 2.5rem}
+nav.scrolled{background:rgba(11,61,78,.78);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);padding:.7rem 2.5rem}
+.nav-links a{position:relative;padding:.25rem 0}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:#7ecfc0;transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta,.btn-primary{background:linear-gradient(135deg,#8fe0d0,#5bb8a8);box-shadow:0 6px 20px rgba(126,207,192,.3);transition:transform .25s,box-shadow .25s}
+.nav-cta:hover,.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(126,207,192,.45);background:linear-gradient(135deg,#8fe0d0,#5bb8a8)}
+
+/* HERO — glowing, moving waves */
+#home{background:radial-gradient(ellipse at 20% 20%,rgba(126,207,192,.25),transparent 55%),radial-gradient(ellipse at 85% 75%,rgba(26,122,110,.55),transparent 55%),linear-gradient(165deg,#072b38 0%,#0B3D4E 40%,#17776c 100%)}
+.hero-bg{opacity:.16;animation:drift 18s linear infinite}
+@keyframes drift{to{background-position:120px 60px}}
+#home::before,#home::after{content:'';position:absolute;border-radius:50%;filter:blur(60px);animation:float 9s ease-in-out infinite}
+#home::before{width:320px;height:320px;background:rgba(126,207,192,.18);top:10%;left:-80px}
+#home::after{width:260px;height:260px;background:rgba(196,92,58,.14);bottom:20%;right:-60px;animation-delay:-4s}
+@keyframes float{50%{transform:translate(30px,-30px) scale(1.1)}}
+.hero-badge{background:rgba(255,255,255,.06);backdrop-filter:blur(6px);text-transform:uppercase;letter-spacing:.18em}
+.hero-title{text-shadow:0 8px 40px rgba(0,0,0,.25)}
+.hero-title em{background:linear-gradient(120deg,#b8f0e4,#7ecfc0 50%,#e9f9f4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn-outline{backdrop-filter:blur(6px);transition:all .25s}
+.btn-outline:hover{transform:translateY(-2px)}
+.scroll-line{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.3;transform:scaleY(.6)}}
+
+/* SECTION TYPOGRAPHY */
+.section-label{text-transform:uppercase;letter-spacing:.2em;font-weight:500;display:inline-flex;align-items:center;gap:.6rem;color:var(--tide)}
+.section-label::before{content:'';width:28px;height:1.5px;background:currentColor}
+#story .section-label{color:#7ecfc0}
+.section-title{letter-spacing:-.01em}
+.section-title em{background:linear-gradient(120deg,#1A6B7C,#2f9e8f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#story .section-title em{background:linear-gradient(120deg,#b8f0e4,#7ecfc0);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ABOUT */
+#about{background:linear-gradient(180deg,#EAF4F4,#f6fbfa)}
+.about-card{background:linear-gradient(145deg,#0B3D4E,#0f5566);box-shadow:0 30px 60px -20px rgba(11,61,78,.5)}
+.about-card::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(126,207,192,.07)}
+.stat-num{background:linear-gradient(120deg,#b8f0e4,#7ecfc0);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* EXPERIENCE CARDS */
+.exp-card{position:relative;overflow:hidden;background:#fff;transition:transform .35s,box-shadow .35s,border-color .35s}
+.exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7ecfc0,#1A6B7C);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.exp-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px -16px rgba(11,61,78,.25)}
+.exp-card:hover::before{transform:scaleX(1)}
+.exp-icon{background:linear-gradient(135deg,#EAF4F4,#d3ece8);width:48px;height:48px;border-radius:12px;transition:transform .35s}
+.exp-card:hover .exp-icon{transform:rotate(-8deg) scale(1.1)}
+.exp-detail{flex-wrap:wrap;padding-top:.9rem;border-top:1px dashed rgba(0,0,0,.1)}
+
+/* PACKAGES */
+#packages{background:linear-gradient(180deg,#F5EFE0,#fbf7ee)}
+.pkg-card{transition:transform .35s,box-shadow .35s;border:1px solid rgba(0,0,0,.04)}
+.pkg-card:hover{transform:translateY(-10px);box-shadow:0 30px 60px -20px rgba(11,61,78,.3)}
+.pkg-header{background:linear-gradient(145deg,#0B3D4E,#146075);position:relative;overflow:hidden}
+.pkg-header.tide{background:linear-gradient(145deg,#1A6B7C,#2a9a8b)}
+.pkg-header.kelp{background:linear-gradient(145deg,#2D5A27,#4a8240)}
+.pkg-header::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.07)}
+.pkg-grid .pkg-card:nth-child(2){transform:translateY(-14px);box-shadow:0 24px 50px -18px rgba(26,107,124,.4);border-color:#7ecfc0}
+.pkg-grid .pkg-card:nth-child(2):hover{transform:translateY(-22px)}
+.pkg-cta{background:linear-gradient(135deg,#0B3D4E,#1A6B7C);transition:transform .25s,box-shadow .25s}
+.pkg-cta:hover{background:linear-gradient(135deg,#1A6B7C,#2a9a8b);transform:translateY(-2px);box-shadow:0 10px 24px rgba(26,107,124,.35)}
+
+/* STORY / TIMELINE */
+#story{background:radial-gradient(ellipse at 90% 10%,rgba(126,207,192,.12),transparent 50%),linear-gradient(160deg,#072b38,#0B3D4E)}
+.timeline::before{background:linear-gradient(to bottom,#7ecfc0,rgba(126,207,192,.05))}
+.tl-item::before{box-shadow:0 0 0 4px rgba(126,207,192,.2),0 0 14px #7ecfc0}
+.story-quote{backdrop-filter:blur(6px);box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
+
+/* GALLERY — makukulay na placeholder */
+.gallery-item{transition:transform .35s,box-shadow .35s;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.gallery-item:hover{transform:scale(1.03);box-shadow:0 20px 40px -12px rgba(11,61,78,.35);z-index:2}
+.gallery-ph{color:#fff;font-weight:500;letter-spacing:.04em;background:linear-gradient(135deg,#1A6B7C,#0B3D4E)}
+.gallery-item:nth-child(2) .gallery-ph{background:linear-gradient(135deg,#2a9a8b,#1A6B7C)}
+.gallery-item:nth-child(3) .gallery-ph{background:linear-gradient(135deg,#4a8240,#2D5A27)}
+.gallery-item:nth-child(4) .gallery-ph{background:linear-gradient(135deg,#e08a5f,#C45C3A)}
+.gallery-item:nth-child(5) .gallery-ph{background:linear-gradient(135deg,#3a8f9f,#0B3D4E)}
+.gallery-item:nth-child(6) .gallery-ph{background:linear-gradient(135deg,#17776c,#0a4a50)}
+.gallery-item:nth-child(7) .gallery-ph{background:linear-gradient(135deg,#8a6d3b,#5a4524)}
+.gallery-item:nth-child(8) .gallery-ph{background:linear-gradient(135deg,#d8734f,#8f3a22)}
+.gallery-ph-icon{opacity:.9;font-size:2.2rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25))}
+.gallery-caption{opacity:0;transform:translateY(8px);transition:all .3s}
+.gallery-item:hover .gallery-caption{opacity:1;transform:none}
+
+/* GUIDE */
+.guide-card{border:1px solid rgba(26,107,124,.08);transition:transform .3s,box-shadow .3s;border-top:3px solid #7ecfc0}
+.guide-card:hover{transform:translateY(-5px);box-shadow:0 18px 36px -14px rgba(11,61,78,.2)}
+.guide-budget{background:linear-gradient(135deg,#0B3D4E,#146075);border:none}
+.budget-item{background:rgba(255,255,255,.06);border-radius:10px;padding:1rem}
+
+/* FORMS */
+form{box-shadow:0 20px 50px -24px rgba(11,61,78,.3);border:1px solid rgba(26,107,124,.08)}
+input,select,textarea{transition:border-color .25s,box-shadow .25s}
+input:focus,select:focus,textarea:focus{border-color:#1A6B7C;box-shadow:0 0 0 4px rgba(126,207,192,.25)}
+.btn-submit{background:linear-gradient(135deg,#0B3D4E,#1A6B7C);transition:transform .25s,box-shadow .25s}
+.btn-submit:hover{background:linear-gradient(135deg,#1A6B7C,#2a9a8b);transform:translateY(-2px);box-shadow:0 12px 26px rgba(26,107,124,.35)}
+.contact-icon{background:linear-gradient(135deg,#EAF4F4,#cfe9e4)}
+.contact-hours{box-shadow:0 10px 30px -16px rgba(0,0,0,.2)}
+
+/* FAQ */
+.faq-item{transition:background .25s,padding .25s;border-radius:10px}
+.faq-item.open{background:linear-gradient(90deg,#EAF4F4,transparent);padding-left:1rem}
+.faq-item.open .faq-q{color:var(--tide);font-weight:500}
+
+/* FOOTER */
+footer{background:linear-gradient(180deg,#0D1F22,#08171a)}
+.footer-links a{position:relative}
+.footer-links a:hover{color:#7ecfc0}
+
+/* ACADEMIC BADGE — mas maliit at glass */
+.academic-badge{background:rgba(11,61,78,.85);backdrop-filter:blur(10px);border:1px solid rgba(126,207,192,.25);opacity:.9;transition:opacity .3s}
+.academic-badge:hover{opacity:1}
+
+/* SCROLL REVEAL (kailangan ang maliit na JS sa baba) */
+.js .reveal{opacity:0;translate:0 28px;transition:opacity .8s ease,translate .8s ease,transform .35s ease,box-shadow .35s ease,background .3s,border-color .3s}
+.js .reveal.in{opacity:1;translate:0 0}
+
+@media(max-width:600px){
+  nav,nav.scrolled{padding:.8rem 1rem}
+  .pkg-grid .pkg-card:nth-child(2){transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;translate:none}
+}
+
+
+/* ===== FOOTER UPGRADE ===== */
+footer.site-footer{position:relative;overflow:hidden;padding:5rem 2rem 1.5rem;background:radial-gradient(ellipse at 15% 0%,rgba(126,207,192,.14),transparent 50%),linear-gradient(180deg,#0a2d38,#061a20)}
+footer.site-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#7ecfc0,#C45C3A,#7ecfc0,transparent)}
+.ft-glow{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;animation:float 11s ease-in-out infinite}
+.ft-glow-a{width:300px;height:300px;background:rgba(126,207,192,.12);top:20%;right:-80px}
+.ft-glow-b{width:240px;height:240px;background:rgba(196,92,58,.08);bottom:-60px;left:10%;animation-delay:-5s}
+.ft-wrap{position:relative;max-width:1100px;margin:0 auto}
+.ft-news{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.75rem 2rem;margin-bottom:4rem;border-radius:20px;background:linear-gradient(135deg,rgba(126,207,192,.14),rgba(255,255,255,.04));border:1px solid rgba(126,207,192,.25);backdrop-filter:blur(8px)}
+.ft-news h3{font-family:var(--serif);font-size:1.6rem;font-weight:300;font-style:italic;color:#fff;line-height:1.2}
+.ft-news p{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.25rem}
+.ft-news form{display:flex;gap:.6rem;flex:1;min-width:260px;max-width:420px;background:none;padding:0;border:0;box-shadow:none;border-radius:0}
+.ft-news input{flex:1;border-radius:2rem;padding:.75rem 1.2rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}
+.ft-news input::placeholder{color:rgba(255,255,255,.4)}
+.ft-news button{width:auto;border:0;border-radius:2rem;padding:.75rem 1.5rem;background:linear-gradient(135deg,#8fe0d0,#5bb8a8);color:#0D1F22;font:500 .85rem var(--sans);cursor:pointer;transition:transform .25s,box-shadow .25s}
+.ft-news button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(126,207,192,.35)}
+.ft-news .success-msg{flex-basis:100%;margin:0;color:#b8f0e4;background:rgba(126,207,192,.1);border-color:rgba(126,207,192,.3)}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:3rem;padding-bottom:3rem}
+.ft-logo{font-family:var(--serif);font-size:2rem;font-weight:600;color:#fff;text-decoration:none}
+.ft-logo span{font-style:italic;background:linear-gradient(120deg,#b8f0e4,#7ecfc0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ft-brand p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.7;margin-top:.8rem;max-width:34ch}
+.ft-brand .ft-tag{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.8)}
+.ft-social{display:flex;gap:.6rem;margin-top:1.4rem}
+.ft-social a{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:500;text-transform:uppercase;text-decoration:none;color:#b8f0e4;border:1px solid rgba(126,207,192,.3);transition:all .3s}
+.ft-social a:hover{background:linear-gradient(135deg,#8fe0d0,#5bb8a8);color:#0D1F22;transform:translateY(-4px);box-shadow:0 10px 20px rgba(126,207,192,.3)}
+.ft-col h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#7ecfc0;margin-bottom:1.3rem;padding-bottom:.7rem;position:relative}
+.ft-col h4::after{content:'';position:absolute;left:0;bottom:0;width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,#7ecfc0,#C45C3A)}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.ft-col a,.ft-col li{font-size:.85rem;color:rgba(255,255,255,.6);text-decoration:none;line-height:1.5}
+.ft-col a{display:inline-block;transition:color .25s,transform .25s}
+.ft-col a:hover{color:#fff;transform:translateX(5px)}
+.ft-contact small{display:block;font-size:.72rem;font-style:italic;color:rgba(255,255,255,.35);padding-left:1.6rem}
+.ft-bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1)}
+.ft-bottom p{font-size:.74rem;color:rgba(255,255,255,.4)}
+.ft-top-btn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0D1F22;text-decoration:none;font-size:1.1rem;background:linear-gradient(135deg,#8fe0d0,#5bb8a8);box-shadow:0 8px 20px rgba(126,207,192,.3);transition:transform .3s}
+.ft-top-btn:hover{transform:translateY(-5px)}
+@media(max-width:900px){.ft-top{grid-template-columns:1fr 1fr;gap:2.5rem}.ft-brand{grid-column:span 2}}
+@media(max-width:600px){footer.site-footer{padding:4rem 1.25rem 1.5rem}.ft-top{grid-template-columns:1fr}.ft-brand{grid-column:span 1}.ft-news{padding:1.5rem}.ft-bottom{flex-direction:column;text-align:center}}
+
+/* ===== BOOKING UPGRADE ===== */
+#booking{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#eaf4f4 100%)}
+#booking::before{content:'';position:absolute;top:10%;left:-140px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(126,207,192,.28),transparent 70%)}
+#booking::after{content:'';position:absolute;bottom:-100px;right:-100px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(196,92,58,.12),transparent 70%)}
+#booking .container{position:relative;z-index:1}
+#booking .booking-grid{gap:4rem}
+.bk-steps{display:flex;gap:.75rem;margin:1.75rem 0 1.25rem;flex-wrap:wrap}
+.bk-step{flex:1;min-width:130px;display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;border-radius:14px;background:rgba(255,255,255,.7);border:1px solid rgba(26,107,124,.12);backdrop-filter:blur(6px);font-size:.8rem;color:var(--ocean);line-height:1.3}
+.bk-step b{flex-shrink:0;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:italic 400 1rem var(--serif);color:#fff;background:linear-gradient(135deg,#1A6B7C,#2a9a8b);box-shadow:0 6px 14px rgba(26,107,124,.3)}
+.bk-card{background:#fff;border:1px solid rgba(26,107,124,.1);border-radius:18px;padding:1.4rem 1.6rem;margin-top:1rem;box-shadow:0 8px 24px -16px rgba(11,61,78,.25);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.bk-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#7ecfc0,#1A6B7C)}
+.bk-card:hover{transform:translateY(-3px);box-shadow:0 20px 40px -18px rgba(11,61,78,.3)}
+.bk-card h3{margin:0 0 .5rem!important;font-size:1.3rem;font-weight:400;font-style:italic}
+.bk-form{position:relative;overflow:hidden;background:#fff;border-radius:28px;padding:2.75rem 2.5rem 2rem;border:1px solid rgba(26,107,124,.12);box-shadow:0 40px 80px -34px rgba(11,61,78,.4)}
+.bk-form::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#7ecfc0,#1A6B7C,#C45C3A)}
+.bk-form-head{margin-bottom:1.75rem}
+.bk-badge{display:inline-block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tide);background:var(--foam);padding:.3rem .9rem;border-radius:2rem;margin-bottom:.8rem}
+.bk-form-head h3{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--ocean);line-height:1.1}
+.bk-form-head p{font-size:.85rem;color:#5a7880;margin-top:.4rem}
+.bk-form label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tide)}
+.bk-form input,.bk-form select,.bk-form textarea{background:#f4f9f9;border:1.5px solid transparent;border-radius:12px;padding:.85rem 1rem}
+.bk-form input:hover,.bk-form select:hover,.bk-form textarea:hover{border-color:rgba(126,207,192,.5)}
+.bk-form input:focus,.bk-form select:focus,.bk-form textarea:focus{background:#fff;border-color:#1A6B7C;box-shadow:0 0 0 4px rgba(126,207,192,.25)}
+.bk-form select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:2.5rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231A6B7C' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.bk-est{display:none;margin:0 0 1.25rem;padding:1.1rem 1.3rem;border-radius:16px;color:#fff;background:linear-gradient(135deg,#0B3D4E,#17776c);box-shadow:0 16px 34px -16px rgba(11,61,78,.6)}
+.bk-est.show{display:block;animation:bkIn .4s ease}
+@keyframes bkIn{from{opacity:0;transform:translateY(8px)}}
+.bk-est div{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.3rem 0;font-size:.82rem}
+.bk-est div+div{border-top:1px dashed rgba(255,255,255,.25);margin-top:.3rem;padding-top:.6rem}
+.bk-est span{opacity:.75}
+.bk-est strong{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:#b8f0e4}
+.bk-est small{display:block;margin-top:.6rem;font-size:.75rem;color:#ffd9c9}
+.bk-form .btn-submit{display:flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem;font-size:.95rem;letter-spacing:.02em;box-shadow:0 14px 30px -12px rgba(26,107,124,.6)}
+.bk-form .btn-submit::after{content:'→';transition:transform .3s}
+.bk-form .btn-submit:hover::after{transform:translateX(6px)}
+.bk-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.2rem;font-size:.72rem;color:var(--mist)}
+@media(max-width:600px){.bk-form{padding:2.25rem 1.4rem 1.5rem;border-radius:22px}.bk-step{min-width:100%}.bk-card{padding:1.2rem 1.2rem 1.2rem 1.4rem}}
+
+/* ===== EXPERIENCES UPGRADE ===== */
+#experience{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#f1f8f7 100%)}
+#experience::before{content:'';position:absolute;top:8%;right:-140px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(126,207,192,.25),transparent 70%)}
+#experience .container{position:relative}
+.xp-list{display:flex;flex-direction:column;gap:2.25rem}
+.xp-card{display:grid;grid-template-columns:310px 1fr;border-radius:28px;overflow:hidden;background:#fff;border:1px solid rgba(26,107,124,.1);box-shadow:0 28px 60px -36px rgba(11,61,78,.5);transition:transform .4s,box-shadow .4s}
+.xp-card:hover{transform:translateY(-6px);box-shadow:0 40px 80px -34px rgba(11,61,78,.55)}
+.xp-card.rev{grid-template-columns:1fr 310px}
+.xp-card.rev .xp-side{order:2}
+.xp-side{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:1.75rem;padding:2rem;color:#fff;background:linear-gradient(155deg,var(--c1),var(--c2))}
+.xp-side::before{content:'';position:absolute;right:-70px;bottom:-70px;width:240px;height:240px;border-radius:50%;border:34px solid rgba(255,255,255,.08)}
+.xp-side::after{content:'';position:absolute;left:-50px;top:30%;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.07)}
+.xp-side>*{position:relative;z-index:1}
+.xp-num{font:italic 300 4.2rem/1 var(--serif);opacity:.3;align-self:flex-end}
+.xp-emoji{font-size:3.6rem;line-height:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.3));transition:transform .5s}
+.xp-card:hover .xp-emoji{transform:scale(1.12) rotate(-6deg)}
+.xp-meta{display:grid;gap:.7rem}
+.xp-meta div{padding:.75rem 1rem;border-radius:14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px)}
+.xp-meta small{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;line-height:1.4}
+.xp-meta b{font:400 1.5rem var(--serif)}
+.xp-meta em{font-style:normal;font-size:.75rem;opacity:.8;margin-left:.4rem}
+.xp-main{padding:2.4rem 2.6rem}
+.xp-main h3{font:300 2.1rem/1.1 var(--serif);color:var(--ocean);margin-bottom:.9rem}
+.xp-main>p{font-size:.92rem;color:#4a6670;line-height:1.75;margin-bottom:.6rem}
+.xp-main h4{margin:1.4rem 0 .7rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tide);display:flex;align-items:center;gap:.6rem}
+.xp-main h4::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(26,107,124,.25),transparent)}
+.xp-hl{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.55rem 1rem}
+.xp-hl li{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:#3d5c65;line-height:1.4}
+.xp-hl li::before{content:'✓';flex-shrink:0;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.xp-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.xp-tags span{padding:.35rem .95rem;border-radius:2rem;font-size:.75rem;color:var(--ocean);background:var(--foam);border:1px solid rgba(26,107,124,.14);transition:all .25s}
+.xp-tags span:hover{background:var(--ocean);color:#fff;transform:translateY(-2px)}
+.xp-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;padding:.8rem 1.7rem;border-radius:2rem;color:#fff;text-decoration:none;font-size:.85rem;font-weight:500;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 14px 28px -12px rgba(11,61,78,.55);transition:transform .25s,box-shadow .25s}
+.xp-cta span{transition:transform .3s}
+.xp-cta:hover{transform:translateY(-3px);box-shadow:0 20px 34px -12px rgba(11,61,78,.6)}
+.xp-cta:hover span{transform:translateX(6px)}
+.xp-note{margin-top:2.5rem;padding:1rem 1.4rem;border-radius:14px;text-align:center;font-size:.8rem;color:#5a7880;background:rgba(255,255,255,.7);border:1px dashed rgba(26,107,124,.3)}
+@media(max-width:900px){
+  .xp-card,.xp-card.rev{grid-template-columns:1fr}
+  .xp-card.rev .xp-side{order:0}
+  .xp-side{flex-direction:row;flex-wrap:wrap;align-items:center;padding:1.5rem}
+  .xp-num{position:absolute;top:.8rem;right:1.2rem;font-size:3rem}
+  .xp-meta{grid-template-columns:1fr 1fr;flex:1;min-width:240px}
+}
+@media(max-width:600px){.xp-main{padding:1.7rem 1.4rem}.xp-hl{grid-template-columns:1fr}.xp-meta{grid-template-columns:1fr}.xp-main h3{font-size:1.7rem}}
+
+/* ===== CONTACT UPGRADE ===== */
+#contact{position:relative;overflow:hidden;background:linear-gradient(180deg,#F5EFE0 0%,#fbf7ee 100%)}
+#contact::before{content:'';position:absolute;top:-120px;left:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(126,207,192,.3),transparent 70%)}
+#contact::after{content:'';position:absolute;bottom:-100px;right:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(196,92,58,.14),transparent 70%)}
+#contact .container{position:relative;z-index:1}
+.ct-head{max-width:640px;margin-bottom:3rem}
+.ct-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:start}
+.ct-brand{display:flex;align-items:center;gap:1.1rem;padding:1.5rem 1.7rem;border-radius:22px;color:#fff;background:linear-gradient(135deg,#0B3D4E,#17776c);box-shadow:0 24px 50px -24px rgba(11,61,78,.7);position:relative;overflow:hidden}
+.ct-brand::after{content:'';position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.08)}
+.ct-brand-icon{flex-shrink:0;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25)}
+.ct-brand h3{font:400 1.35rem/1.2 var(--serif);font-style:italic}
+.ct-brand span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#b8f0e4}
+.ct-cards{display:grid;gap:.9rem;margin-top:1.1rem}
+.ct-card{display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.3rem;border-radius:18px;background:rgba(255,255,255,.85);border:1px solid rgba(26,107,124,.1);backdrop-filter:blur(6px);box-shadow:0 10px 26px -18px rgba(11,61,78,.35);text-decoration:none;transition:transform .3s,box-shadow .3s,border-color .3s}
+.ct-card:hover,.ct-card.link:hover{transform:translateX(6px);border-color:#7ecfc0;box-shadow:0 18px 36px -18px rgba(11,61,78,.4)}
+.ct-ico{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:linear-gradient(135deg,#EAF4F4,#cfe9e4)}
+.ct-card small,.ct-soc small{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)}
+.ct-card b,.ct-soc b{display:block;font-weight:500;font-size:.92rem;color:var(--ocean);line-height:1.4;word-break:break-word}
+.ct-status{display:inline-flex;align-items:center;gap:.4rem;margin-top:.35rem;font-size:.72rem;font-weight:500;padding:.15rem .7rem;border-radius:2rem}
+.ct-status::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
+.ct-status.on{color:#1f7a45;background:rgba(45,160,90,.12)}
+.ct-status.on::before{animation:pulse 1.6s ease-in-out infinite}
+.ct-status.off{color:#a8472a;background:rgba(196,92,58,.12)}
+.ct-social{margin-top:1.4rem;padding:1.4rem 1.5rem;border-radius:20px;background:rgba(255,255,255,.7);border:1px solid rgba(26,107,124,.1)}
+.ct-social h4{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tide);margin-bottom:.9rem}
+.ct-soc{display:flex;align-items:center;gap:.9rem;padding:.55rem .6rem;border-radius:14px;text-decoration:none;transition:background .25s,transform .25s}
+.ct-soc:hover{background:#fff;transform:translateX(5px)}
+.ct-soc i{flex-shrink:0;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 .8rem var(--sans);font-style:normal;text-transform:uppercase;color:#fff}
+.ct-soc i.fb{background:linear-gradient(135deg,#3b82f6,#1d4ed8);font-size:1.1rem}
+.ct-soc i.ig{background:linear-gradient(135deg,#f9a03f,#e1306c,#7c3aed)}
+.ct-soc i.tt{background:linear-gradient(135deg,#25f4ee,#0D1F22 55%,#fe2c55)}
+.ct-social p{margin-top:.9rem;padding-top:.8rem;border-top:1px dashed rgba(26,107,124,.25);font-size:.74rem;font-style:italic;color:#5a7880;line-height:1.5}
+.ct-side{display:flex;flex-direction:column;gap:1.4rem}
+.ct-msg{padding:2rem;border-radius:24px;color:#fff;background:linear-gradient(145deg,#0B3D4E,#146075);box-shadow:0 30px 60px -28px rgba(11,61,78,.7);position:relative;overflow:hidden}
+.ct-msg::after{content:'';position:absolute;right:-50px;bottom:-50px;width:190px;height:190px;border-radius:50%;border:30px solid rgba(255,255,255,.06)}
+.ct-msg>*{position:relative;z-index:1}
+.ct-chip{display:inline-block;margin-bottom:.9rem;padding:.3rem .9rem;border-radius:2rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.12);color:#b8f0e4}
+.ct-msg h3{font:300 2.1rem/1.1 var(--serif);margin-bottom:.7rem}
+.ct-msg p{font-size:.88rem;line-height:1.75;opacity:.8}
+.ct-btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.5rem}
+.ct-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.4rem;border-radius:2rem;font-size:.82rem;font-weight:500;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px);transition:transform .25s,background .25s,box-shadow .25s}
+.ct-btn:hover{transform:translateY(-3px);background:rgba(255,255,255,.14)}
+.ct-btn.primary{color:#0D1F22;border-color:transparent;background:linear-gradient(135deg,#8fe0d0,#5bb8a8);box-shadow:0 12px 26px -10px rgba(126,207,192,.7)}
+.ct-btn.primary:hover{background:linear-gradient(135deg,#8fe0d0,#5bb8a8);box-shadow:0 18px 32px -10px rgba(126,207,192,.8)}
+.ct-btn span{transition:transform .3s}
+.ct-btn.primary:hover span{transform:translateX(5px)}
+.ct-form{scroll-margin-top:6rem;position:relative;overflow:hidden;background:#fff;border-radius:24px;padding:2.2rem 2rem 1.8rem;border:1px solid rgba(26,107,124,.12);box-shadow:0 30px 60px -32px rgba(11,61,78,.4)}
+.ct-form::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#7ecfc0,#1A6B7C,#C45C3A)}
+.ct-form h3{font:300 1.6rem var(--serif);color:var(--ocean);margin-bottom:1.3rem}
+.ct-form label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tide)}
+.ct-form input,.ct-form select,.ct-form textarea{background:#f4f9f9;border:1.5px solid transparent;border-radius:12px;padding:.8rem 1rem}
+.ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{background:#fff;border-color:#1A6B7C}
+.ct-form select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:2.5rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231A6B7C' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+@media(max-width:900px){.ct-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.ct-msg{padding:1.6rem 1.4rem}.ct-form{padding:2rem 1.3rem 1.5rem}.ct-brand{flex-direction:column;align-items:flex-start}.ct-btn{width:100%;justify-content:center}}
+
+/* ===== VISITOR GUIDE UPGRADE ===== */
+#guide{position:relative;overflow:hidden;background:linear-gradient(180deg,#EAF4F4 0%,#f8fcfb 100%)}
+#guide::before{content:'';position:absolute;top:6%;left:-140px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(126,207,192,.28),transparent 70%)}
+#guide .container{position:relative}
+.gd-head{max-width:640px;margin-bottom:2.5rem}
+.gd-card{position:relative;background:#fff;border-radius:26px;padding:2rem 2.2rem;border:1px solid rgba(26,107,124,.1);box-shadow:0 24px 54px -34px rgba(11,61,78,.45);margin-top:1.5rem}
+.gd-row{display:grid;gap:1.5rem}
+.gd-row.two{grid-template-columns:1fr 1fr}
+.gd-row .gd-card{margin-top:1.5rem}
+.gd-title{display:flex;align-items:center;gap:1rem;margin-bottom:1.3rem}
+.gd-title h3{font:300 1.7rem/1.1 var(--serif);color:var(--ocean)}
+.gd-title small{font-size:.74rem;color:var(--mist)}
+.gd-ico{flex-shrink:0;width:50px;height:50px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:linear-gradient(135deg,#EAF4F4,#cfe9e4);box-shadow:inset 0 0 0 1px rgba(26,107,124,.1)}
+.gd-prog{display:flex;align-items:center;gap:1rem;margin-bottom:1.3rem}
+.gd-bar{flex:1;height:8px;border-radius:8px;background:#e4efee;overflow:hidden}
+.gd-bar i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#7ecfc0,#1A6B7C);transition:width .4s}
+.gd-prog span{font-size:.78rem;font-weight:500;color:var(--tide);white-space:nowrap}
+.gd-packlist{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem 1.2rem}
+.gd-pack-item{display:flex;align-items:center;gap:.8rem;margin:0;padding:.75rem 1rem;border-radius:14px;background:#f4f9f9;border:1.5px solid transparent;cursor:pointer;font-size:.9rem;font-weight:400;color:#3d5c65;transition:all .25s}
+.gd-pack-item:hover{border-color:rgba(126,207,192,.6);transform:translateX(4px)}
+.gd-pack-item input{position:absolute;opacity:0;width:0;height:0;padding:0;border:0}
+.gd-box{flex-shrink:0;width:24px;height:24px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:transparent;background:#fff;border:2px solid #b7d6d3;transition:all .25s}
+.gd-pack-item input:checked+.gd-box{color:#fff;border-color:transparent;background:linear-gradient(135deg,#2a9a8b,#1A6B7C);transform:scale(1.08)}
+.gd-pack-item input:checked~.gd-lbl{text-decoration:line-through;opacity:.5}
+.gd-pack-item input:focus-visible+.gd-box{outline:2px solid #7ecfc0;outline-offset:2px}
+.gd-em{font-size:1.2rem}
+.gd-sub{display:inline-flex;align-items:center;gap:.5rem;margin:.4rem 0 .7rem;padding:.25rem .9rem;border-radius:2rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
+.gd-sub.ok{color:#1f6b36;background:rgba(45,160,90,.12)}
+.gd-sub.no{color:#a8472a;background:rgba(196,92,58,.12);margin-top:1.4rem}
+.gd-list{list-style:none;display:grid;gap:.5rem}
+.gd-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:.88rem;line-height:1.5;color:#3d5c65}
+.gd-list li::before{flex-shrink:0;width:21px;height:21px;margin-top:1px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff}
+.gd-list.ok li::before{content:'✓';background:linear-gradient(135deg,#4aa56a,#2D5A27)}
+.gd-list.no li::before{content:'✕';background:linear-gradient(135deg,#e08a5f,#C45C3A)}
+.gd-weather{background:linear-gradient(160deg,#fff 0%,#fdf4ee 100%);border-color:rgba(196,92,58,.2)}
+.gd-weather>p{font-size:.9rem;line-height:1.75;color:#4a6670}
+.gd-quote{margin:1.1rem 0;padding:1rem 1.2rem;border-radius:0 14px 14px 0;border-left:4px solid #C45C3A;background:rgba(196,92,58,.08);font:italic 400 1.15rem/1.45 var(--serif);color:#8f3a22}
+.gd-access{display:flex;gap:1rem;padding:1.1rem 1.2rem;border-radius:18px;background:var(--foam);border:1px solid rgba(26,107,124,.15)}
+.gd-access>span{font-size:1.7rem}
+.gd-access h4{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tide);margin-bottom:.3rem}
+.gd-access p{font-size:.82rem;line-height:1.65;color:#4a6670}
+.gd-access a{display:inline-block;margin-top:.5rem;font-size:.8rem;font-weight:500;color:var(--tide);text-decoration:none;transition:transform .25s}
+.gd-access a:hover{transform:translateX(5px)}
+.gd-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.gd-tile{display:flex;align-items:center;gap:.9rem;padding:1rem 1.1rem;border-radius:16px;background:linear-gradient(135deg,#f4f9f9,#eaf4f4);border:1px solid rgba(26,107,124,.08);transition:transform .3s,box-shadow .3s,background .3s}
+.gd-tile:hover{transform:translateY(-5px);background:#fff;box-shadow:0 16px 30px -16px rgba(11,61,78,.35)}
+.gd-tile span{flex-shrink:0;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:#fff;box-shadow:0 6px 14px -8px rgba(11,61,78,.4)}
+.gd-tile b{font-weight:500;font-size:.85rem;line-height:1.4;color:var(--ocean)}
+.gd-safe{color:#fff;background:linear-gradient(150deg,#0B3D4E,#146075);border:none;box-shadow:0 30px 60px -30px rgba(11,61,78,.8);overflow:hidden}
+.gd-safe::after{content:'';position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:32px solid rgba(255,255,255,.05)}
+.gd-safe .gd-title h3{color:#fff}
+.gd-safe .gd-title small{color:#b8f0e4}
+.gd-safe .gd-ico{background:rgba(255,255,255,.14);box-shadow:none}
+.gd-steps{list-style:none;counter-reset:s;display:grid;gap:.75rem;position:relative;z-index:1}
+.gd-steps li{counter-increment:s;display:flex;gap:.9rem;align-items:flex-start;font-size:.88rem;line-height:1.55;color:rgba(255,255,255,.88)}
+.gd-steps li::before{content:counter(s);flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:italic 400 .95rem var(--serif);color:#0D1F22;background:linear-gradient(135deg,#8fe0d0,#5bb8a8)}
+.gd-budget{margin-top:1.5rem;padding:2.2rem;border-radius:28px;color:#fff;background:radial-gradient(ellipse at 90% 0%,rgba(126,207,192,.25),transparent 55%),linear-gradient(150deg,#072b38,#0B3D4E);box-shadow:0 34px 70px -34px rgba(11,61,78,.85)}
+.gd-bud-head h3{font:300 1.9rem var(--serif);margin-bottom:.2rem}
+.gd-bud-head p{font-size:.85rem;color:#b8f0e4;font-style:italic}
+.gd-bud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.5rem 0 1.2rem}
+.gd-bud{padding:1.3rem 1.1rem;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);transition:transform .3s,background .3s}
+.gd-bud:hover{transform:translateY(-6px);background:rgba(255,255,255,.12)}
+.gd-bud>span{display:block;font-size:1.7rem;margin-bottom:.6rem}
+.gd-bud small{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.gd-bud b{display:block;margin:.2rem 0;font:300 1.7rem/1.15 var(--serif);color:#7ecfc0}
+.gd-bud em{font-style:normal;font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.4}
+.gd-bud-note{padding-top:1rem;border-top:1px dashed rgba(255,255,255,.2);font-size:.8rem;color:rgba(255,255,255,.7)}
+@media(max-width:900px){.gd-row.two{grid-template-columns:1fr}.gd-tiles{grid-template-columns:1fr 1fr}.gd-bud-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.gd-card{padding:1.6rem 1.3rem}.gd-packlist,.gd-tiles,.gd-bud-grid{grid-template-columns:1fr}.gd-budget{padding:1.7rem 1.3rem}.gd-prog{flex-direction:column;align-items:stretch;gap:.4rem}}
+
+/* ===== OUR STORY UPGRADE ===== */
+#story{position:relative;overflow:hidden;background:radial-gradient(ellipse at 85% 8%,rgba(126,207,192,.18),transparent 50%),radial-gradient(ellipse at 5% 95%,rgba(196,92,58,.12),transparent 45%),linear-gradient(160deg,#061f28,#0B3D4E 60%,#0e5566)}
+#story .container{position:relative;z-index:1}
+.sy-intro{display:grid;grid-template-columns:1.2fr 1fr;gap:3.5rem;align-items:center;margin-bottom:4.5rem}
+.sy-intro .section-body{color:rgba(255,255,255,.78);max-width:52ch}
+.sy-shift{display:flex;flex-direction:column;align-items:stretch;gap:.6rem;padding:1.6rem;border-radius:26px;background:rgba(255,255,255,.06);border:1px solid rgba(126,207,192,.25);backdrop-filter:blur(10px);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.sy-shift-a,.sy-shift-b{padding:1.1rem 1.3rem;border-radius:18px}
+.sy-shift-a{background:rgba(255,255,255,.07);color:rgba(255,255,255,.7)}
+.sy-shift-b{background:linear-gradient(135deg,#8fe0d0,#5bb8a8);color:#0D1F22;box-shadow:0 14px 30px -12px rgba(126,207,192,.6)}
+.sy-shift small{display:block;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+.sy-shift b{font:400 1.7rem/1.15 var(--serif);font-style:italic}
+.sy-shift-arrow{display:flex;align-items:center;justify-content:center;gap:.6rem;font-size:1.4rem;color:#7ecfc0}
+.sy-shift-arrow span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+.sy-block{margin-top:4.5rem}
+.sy-h{font:300 clamp(1.8rem,3.5vw,2.5rem)/1.15 var(--serif);color:#fff;margin-bottom:.6rem}
+.sy-h em{font-style:italic;background:linear-gradient(120deg,#b8f0e4,#7ecfc0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sy-lead{font-size:.95rem;color:rgba(255,255,255,.7);margin-bottom:2rem}
+.sy-cycle{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.sy-step{position:relative;padding:1.8rem 1.5rem;border-radius:24px;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(126,207,192,.22);backdrop-filter:blur(8px);transition:transform .35s,border-color .35s,box-shadow .35s}
+.sy-step:hover{transform:translateY(-8px);border-color:#7ecfc0;box-shadow:0 30px 50px -26px rgba(0,0,0,.7)}
+.sy-step:not(:last-child)::after{content:'→';position:absolute;right:-1.65rem;top:50%;translate:0 -50%;width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#0D1F22;background:#7ecfc0;z-index:2;box-shadow:0 8px 18px -6px rgba(126,207,192,.7)}
+.sy-n{position:absolute;top:1rem;right:1.3rem;font:italic 300 2.6rem/1 var(--serif);color:rgba(126,207,192,.3)}
+.sy-em{width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin-bottom:1.1rem;background:rgba(126,207,192,.15);border:1px solid rgba(126,207,192,.3);transition:transform .4s}
+.sy-step:hover .sy-em{transform:rotate(-8deg) scale(1.1)}
+.sy-step h4{font:400 1.6rem var(--serif);font-style:italic;color:#fff;margin-bottom:.5rem}
+.sy-step p{font-size:.85rem;line-height:1.7;color:rgba(255,255,255,.68)}
+.sy-loop{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-top:1.8rem;padding:.9rem 1.4rem;border-radius:2rem;border:1px dashed rgba(126,207,192,.4);font-size:.82rem;letter-spacing:.04em;color:#b8f0e4;text-align:center}
+.sy-loop span{font-size:1.4rem;display:inline-block;animation:syspin 6s linear infinite}
+@keyframes syspin{to{rotate:360deg}}
+.sy-pledge{position:relative;overflow:hidden;margin-top:4.5rem;padding:3.2rem 3rem;border-radius:32px;text-align:center;background:linear-gradient(145deg,rgba(126,207,192,.2),rgba(255,255,255,.05));border:1px solid rgba(126,207,192,.35);box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
+.sy-pledge::before{content:'“';position:absolute;top:-1.5rem;left:1.5rem;font:400 12rem/1 var(--serif);color:rgba(126,207,192,.15)}
+.sy-pledge>*{position:relative}
+.sy-chip{display:inline-block;padding:.35rem 1.1rem;border-radius:2rem;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#b8f0e4;background:rgba(255,255,255,.1);border:1px solid rgba(126,207,192,.3)}
+.sy-pledge-intro{margin:1.1rem 0 1.4rem;font-size:.88rem;color:rgba(255,255,255,.7)}
+.sy-pledge blockquote{max-width:780px;margin:0 auto;font:italic 300 clamp(1.4rem,3vw,2.1rem)/1.5 var(--serif);color:#fff}
+.sy-pledge-btn{margin-top:2rem;padding:.9rem 2.1rem;border:0;border-radius:2rem;font:500 .9rem var(--sans);color:#0D1F22;cursor:pointer;background:linear-gradient(135deg,#8fe0d0,#5bb8a8);box-shadow:0 16px 30px -12px rgba(126,207,192,.7);transition:transform .25s,box-shadow .25s}
+.sy-pledge-btn:hover{transform:translateY(-3px);box-shadow:0 22px 36px -12px rgba(126,207,192,.85)}
+.sy-pledge.done .sy-pledge-btn{color:#fff;background:linear-gradient(135deg,#2a9a8b,#1A6B7C)}
+.sy-seal{position:absolute;top:1.4rem;right:1.6rem;width:92px;height:92px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:#0D1F22;background:radial-gradient(circle,#b8f0e4,#7ecfc0);box-shadow:0 0 0 6px rgba(126,207,192,.25),0 18px 30px -10px rgba(0,0,0,.5);opacity:0;scale:.3;rotate:-25deg;transition:opacity .4s,scale .5s cubic-bezier(.3,1.6,.5,1),rotate .5s}
+.sy-seal small{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.sy-pledge.done .sy-seal{opacity:1;scale:1;rotate:0deg}
+.sy-prac{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.sy-p{display:flex;align-items:center;gap:.9rem;padding:1.1rem 1.2rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:transform .3s,background .3s,border-color .3s}
+.sy-p:hover{transform:translateY(-5px);background:rgba(126,207,192,.14);border-color:rgba(126,207,192,.5)}
+.sy-p span{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:rgba(126,207,192,.16)}
+.sy-p b{font-weight:400;font-size:.86rem;line-height:1.4;color:rgba(255,255,255,.88)}
+.sy-qs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.sy-q{position:relative;overflow:hidden;display:flex;flex-direction:column;padding:2rem 1.7rem 1.6rem;border-radius:26px;background:#fff;color:var(--ocean);border:2px solid transparent;box-shadow:0 30px 60px -32px rgba(0,0,0,.7);transition:transform .35s,border-color .35s,box-shadow .35s}
+.sy-q:hover{transform:translateY(-6px)}
+.sy-q.on{border-color:#7ecfc0;box-shadow:0 0 0 5px rgba(126,207,192,.2),0 30px 60px -32px rgba(0,0,0,.7)}
+.sy-qn{font:italic 300 4.5rem/1 var(--serif);background:linear-gradient(135deg,#1A6B7C,#7ecfc0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sy-q p{flex:1;margin:.6rem 0 1.4rem;font:400 1.3rem/1.4 var(--serif);color:var(--ocean)}
+.sy-qbtn{display:inline-flex;align-items:center;gap:.6rem;align-self:flex-start;padding:.55rem 1.1rem .55rem .6rem;border:1.5px solid rgba(26,107,124,.25);border-radius:2rem;background:#f4f9f9;font:500 .78rem var(--sans);color:var(--tide);cursor:pointer;transition:all .25s}
+.sy-qbtn i{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:.7rem;color:transparent;background:#fff;border:1.5px solid #b7d6d3;transition:all .25s}
+.sy-q.on .sy-qbtn{color:#fff;border-color:transparent;background:linear-gradient(135deg,#2a9a8b,#1A6B7C)}
+.sy-q.on .sy-qbtn i{color:#1A6B7C;background:#fff;border-color:#fff}
+.sy-qmsg{margin-top:1.6rem;text-align:center;font-size:.85rem;color:rgba(255,255,255,.65);transition:color .3s}
+.sy-qmsg.ready{font:italic 400 1.35rem var(--serif);color:#7ecfc0}
+@media(max-width:900px){
+  .sy-intro{grid-template-columns:1fr;gap:2.5rem}
+  .sy-cycle{grid-template-columns:1fr 1fr;gap:1.6rem}
+  .sy-step:nth-child(2)::after{display:none}
+  .sy-qs{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .sy-cycle{grid-template-columns:1fr}
+  .sy-step:not(:last-child)::after{content:'↓';right:50%;top:auto;bottom:-1.7rem;translate:50% 0}
+  .sy-step:nth-child(2)::after{display:flex}
+  .sy-pledge{padding:2.6rem 1.4rem 2.2rem}
+  .sy-seal{position:static;margin:0 auto 1rem;width:78px;height:78px;display:none}
+  .sy-pledge.done .sy-seal{display:flex}
+  .sy-block{margin-top:3.5rem}
+}
+
+/* ===== GALLERY UPGRADE ===== */
+#gallery{position:relative;overflow:hidden;background:linear-gradient(180deg,#f4faf9 0%,#fff 100%)}
+#gallery::before{content:'';position:absolute;top:5%;right:-140px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(126,207,192,.25),transparent 70%)}
+#gallery .container{position:relative}
+.gl-head{max-width:640px;margin-bottom:2.8rem}
+.gl-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;grid-auto-flow:dense;gap:1rem}
+.gl-item{position:relative;overflow:hidden;border-radius:24px;cursor:pointer;box-shadow:0 20px 44px -26px rgba(11,61,78,.6);transition:transform .4s,box-shadow .4s}
+.gl-item.s-tall{grid-row:span 2}
+.gl-item.s-wide{grid-column:span 2}
+.gl-item:hover,.gl-item:focus-visible{transform:translateY(-6px);box-shadow:0 34px 60px -28px rgba(11,61,78,.75)}
+.gl-item::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,25,32,0) 35%,rgba(5,25,32,.88));pointer-events:none}
+.gl-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:radial-gradient(circle at 72% 24%,rgba(255,255,255,.5),transparent 38%),linear-gradient(170deg,var(--a),var(--b));transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.gl-scene::after{content:'';position:absolute;left:0;right:0;bottom:0;height:46%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'%3E%3Cpath d='M0 10 Q15 0 30 10 T60 10 T90 10 T120 10 V20 H0Z' fill='white' fill-opacity='.16'/%3E%3C/svg%3E") repeat-x bottom/170px 30px,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'%3E%3Cpath d='M0 10 Q15 0 30 10 T60 10 T90 10 T120 10 V20 H0Z' fill='white' fill-opacity='.16'/%3E%3C/svg%3E") repeat-x 0 78%/110px 22px;animation:glwave 9s linear infinite}
+@keyframes glwave{to{background-position:170px bottom,-110px 78%}}
+.gl-item:hover .gl-scene{transform:scale(1.1)}
+.gl-emoji{position:absolute;top:24%;left:50%;translate:-50% 0;font-size:3.6rem;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35));animation:glbob 5s ease-in-out infinite}
+.s-tall .gl-emoji{font-size:5rem;top:30%}
+.s-wide .gl-emoji{font-size:4rem}
+@keyframes glbob{50%{translate:-50% -10px}}
+.gl-tag{position:absolute;top:1rem;left:1rem;z-index:2;padding:.25rem .8rem;border-radius:2rem;font:italic 400 .95rem var(--serif);color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px)}
+.gl-zoom{position:absolute;top:1rem;right:1rem;z-index:2;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#0D1F22;background:rgba(255,255,255,.9);opacity:0;scale:.6;transition:all .35s}
+.gl-item:hover .gl-zoom,.gl-item:focus-visible .gl-zoom{opacity:1;scale:1}
+.gl-item figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.3rem 1.4rem;color:#fff}
+.gl-item h3{font:italic 400 1.45rem/1.15 var(--serif);text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.gl-item p{max-height:0;opacity:0;overflow:hidden;font-size:.8rem;line-height:1.55;color:rgba(255,255,255,.85);transition:max-height .5s,opacity .4s,margin .4s}
+.gl-item:hover p,.gl-item:focus-visible p{max-height:7em;opacity:1;margin-top:.5rem}
+.gl-credits{margin-top:3rem;padding:2.2rem 2.4rem;border-radius:28px;background:#fff;border:1px solid rgba(26,107,124,.12);box-shadow:0 28px 60px -36px rgba(11,61,78,.5);position:relative;overflow:hidden}
+.gl-credits::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#7ecfc0,#1A6B7C,#C45C3A)}
+.gl-credits-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
+.gl-credits-ico{flex-shrink:0;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:linear-gradient(135deg,#EAF4F4,#cfe9e4)}
+.gl-credits h3{font:300 1.7rem var(--serif);color:var(--ocean)}
+.gl-credits-head p{font-size:.85rem;color:#5a7880;line-height:1.55}
+.gl-credit-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1.5rem}
+.gl-credit-list li{display:grid;grid-template-columns:auto 1fr;column-gap:.8rem;align-items:center;padding:.7rem .9rem;border-radius:14px;background:#f4f9f9}
+.gl-credit-list span{grid-row:span 2;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:italic 400 .85rem var(--serif);color:#fff;background:linear-gradient(135deg,#1A6B7C,#2a9a8b)}
+.gl-credit-list b{font-weight:500;font-size:.84rem;color:var(--ocean);line-height:1.3}
+.gl-credit-list em{font-style:normal;font-size:.72rem;color:var(--mist)}
+.gl-credit-list u{text-decoration:none;border-bottom:1px dashed #C45C3A;color:#a8472a}
+.gl-credits-foot{margin-top:1.3rem;padding-top:1rem;border-top:1px dashed rgba(26,107,124,.25);font-size:.76rem;font-style:italic;color:#5a7880}
+.gl-lb{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;gap:1rem;padding:1.5rem;background:rgba(3,18,24,.9);backdrop-filter:blur(10px)}
+.gl-lb.open{display:flex;animation:bkIn .3s ease}
+.gl-lb-card{width:min(880px,100%)}
+.gl-lb-stage{position:relative;overflow:hidden;aspect-ratio:16/10;border-radius:24px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.gl-lb-stage .gl-scene{transform:none!important}
+.gl-lb-stage .gl-emoji{font-size:7rem;top:26%}
+.gl-lb-cap{padding:1.3rem .4rem 0;color:#fff;text-align:center}
+.gl-lb-cap small{font-size:.7rem;letter-spacing:.2em;color:#7ecfc0}
+.gl-lb-cap h3{font:italic 300 2rem var(--serif);margin:.3rem 0}
+.gl-lb-cap p{font-size:.9rem;color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto;line-height:1.65}
+.gl-lb-x,.gl-lb-nav{border:0;cursor:pointer;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);transition:background .25s,transform .25s}
+.gl-lb-x:hover,.gl-lb-nav:hover{background:rgba(126,207,192,.4)}
+.gl-lb-x{position:absolute;top:1.2rem;right:1.2rem;width:44px;height:44px;border-radius:50%;font-size:1rem}
+.gl-lb-nav{flex-shrink:0;width:52px;height:52px;border-radius:50%;font-size:1.8rem;line-height:1}
+@media(max-width:900px){.gl-grid{grid-template-columns:1fr 1fr;grid-auto-rows:210px}.gl-credit-list{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .gl-grid{grid-template-columns:1fr;grid-auto-rows:240px}
+  .gl-item.s-tall{grid-row:span 1}.gl-item.s-wide{grid-column:span 1}
+  .s-tall .gl-emoji,.s-wide .gl-emoji{font-size:3.6rem;top:24%}
+  .gl-credits{padding:1.8rem 1.3rem}
+  .gl-lb{padding:1rem .6rem}.gl-lb-nav{position:absolute;bottom:1.2rem;width:46px;height:46px}.gl-lb-nav.prev{left:1.2rem}.gl-lb-nav.next{right:1.2rem}.gl-lb-card{margin-bottom:4rem}
+}
+@media(hover:none){.gl-item p{max-height:none;opacity:1;margin-top:.5rem}}
+
+/* ===== HOME UPGRADE ===== */
+.hm-hero{max-width:900px}
+.hm-brand{margin-bottom:1.2rem;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.hm-title{font-size:clamp(2.6rem,6.5vw,5.2rem);line-height:1.04}
+.hm-title em{display:block}
+.hm-sub{max-width:660px;margin:0 auto 2.4rem;font-size:1.02rem;line-height:1.8;color:rgba(255,255,255,.78)}
+.hm-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;margin-top:2.4rem}
+.hm-pills span{padding:.45rem 1.1rem;border-radius:2rem;font-size:.76rem;color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px)}
+.hm-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hm-bubbles span{position:absolute;bottom:-60px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.35),rgba(255,255,255,.04));animation:hmrise linear infinite}
+.hm-bubbles span:nth-child(1){left:8%;width:20px;height:20px;animation-duration:15s}
+.hm-bubbles span:nth-child(2){left:22%;width:34px;height:34px;animation-duration:19s;animation-delay:-6s}
+.hm-bubbles span:nth-child(3){left:38%;width:14px;height:14px;animation-duration:13s;animation-delay:-3s}
+.hm-bubbles span:nth-child(4){left:58%;width:26px;height:26px;animation-duration:17s;animation-delay:-9s}
+.hm-bubbles span:nth-child(5){left:72%;width:42px;height:42px;animation-duration:22s;animation-delay:-4s}
+.hm-bubbles span:nth-child(6){left:86%;width:18px;height:18px;animation-duration:14s;animation-delay:-11s}
+.hm-bubbles span:nth-child(7){left:48%;width:10px;height:10px;animation-duration:11s;animation-delay:-7s}
+@keyframes hmrise{to{transform:translateY(-115vh) translateX(30px)}}
+.hm-chip{display:inline-block;padding:.35rem 1.1rem;border-radius:2rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tide);background:#fff;border:1px solid rgba(26,107,124,.18);box-shadow:0 8px 20px -12px rgba(11,61,78,.4)}
+.hm-chip.dark{color:#b8f0e4;background:rgba(255,255,255,.1);border-color:rgba(126,207,192,.35);box-shadow:none}
+.hm-sec{padding:6rem 2rem}
+.hm-center{text-align:center;max-width:640px;margin:0 auto 3rem}
+.hm-center .section-label{justify-content:center}
+.hm-idsec{position:relative;z-index:3;padding:0 2rem 4rem;margin-top:-4.5rem}
+.hm-idhead{text-align:center;margin-bottom:1.3rem}
+.hm-id{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
+.hm-card{grid-column:span 2;position:relative;overflow:hidden;padding:1.5rem 1.6rem;border-radius:22px;background:#fff;border:1px solid rgba(26,107,124,.1);box-shadow:0 26px 54px -32px rgba(11,61,78,.55);transition:transform .35s,box-shadow .35s}
+.hm-card.wide{grid-column:span 3}
+.hm-card:hover{transform:translateY(-6px);box-shadow:0 36px 64px -30px rgba(11,61,78,.6)}
+.hm-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#7ecfc0,#1A6B7C)}
+.hm-card>span{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin-bottom:.9rem;border-radius:14px;font-size:1.3rem;background:linear-gradient(135deg,#EAF4F4,#cfe9e4)}
+.hm-card small{display:block;margin-bottom:.3rem;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+.hm-card b{display:block;font:400 1.2rem/1.35 var(--serif);color:var(--ocean)}
+.hm-tm{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.2rem}
+.hm-tm i{font-style:normal;padding:.3rem .85rem;border-radius:2rem;font-size:.76rem;color:var(--ocean);background:var(--foam);border:1px solid rgba(26,107,124,.14)}
+.hm-intro{display:grid;grid-template-columns:1.15fr 1fr;gap:4rem;align-items:center}
+.hm-goal{position:relative;margin-top:1.8rem;padding:1.4rem 1.6rem 1.4rem 2.6rem;border-radius:0 20px 20px 0;border-left:4px solid #7ecfc0;background:linear-gradient(90deg,rgba(126,207,192,.16),transparent)}
+.hm-goal span{position:absolute;left:.7rem;top:-.2rem;font:400 3.4rem/1 var(--serif);color:#7ecfc0}
+.hm-goal p{font:italic 400 1.3rem/1.55 var(--serif);color:var(--ocean)}
+.hm-combo{position:relative;overflow:hidden;display:grid;gap:.8rem;padding:1.8rem;border-radius:28px;color:#fff;background:linear-gradient(150deg,#0B3D4E,#17776c);box-shadow:0 36px 70px -34px rgba(11,61,78,.8)}
+.hm-combo::after{content:'';position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:30px solid rgba(255,255,255,.06)}
+.hm-combo small{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#b8f0e4}
+.hm-combo div{display:flex;align-items:center;gap:1rem;padding:.9rem 1.1rem;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);transition:transform .3s,background .3s;position:relative;z-index:1}
+.hm-combo div:hover{transform:translateX(8px);background:rgba(255,255,255,.18)}
+.hm-combo span{font-size:1.6rem}
+.hm-combo b{font:400 1.2rem var(--serif);font-style:italic}
+.hm-why{background:linear-gradient(180deg,#EAF4F4,#f6fbfa)}
+.hm-whygrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem}
+.hm-why-card{position:relative;overflow:hidden;padding:2rem 1.6rem;border-radius:26px;background:#fff;border:1px solid rgba(26,107,124,.1);box-shadow:0 22px 48px -32px rgba(11,61,78,.5);transition:transform .35s,box-shadow .35s}
+.hm-why-card:hover{transform:translateY(-8px);box-shadow:0 34px 60px -30px rgba(11,61,78,.6)}
+.hm-why-card::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#7ecfc0,#1A6B7C);transform:scaleX(0);transform-origin:left;transition:transform .45s}
+.hm-why-card:hover::after{transform:scaleX(1)}
+.hm-wn{position:absolute;top:1rem;right:1.3rem;font:italic 300 2.8rem/1 var(--serif);color:rgba(26,107,124,.12)}
+.hm-wi{display:flex;align-items:center;justify-content:center;width:60px;height:60px;margin-bottom:1.2rem;border-radius:20px;font-size:1.9rem;background:linear-gradient(135deg,#EAF4F4,#cfe9e4);transition:transform .4s}
+.hm-why-card:hover .hm-wi{transform:rotate(-8deg) scale(1.1)}
+.hm-why-card h3{margin-bottom:.5rem;font:400 1.5rem/1.15 var(--serif);color:var(--ocean)}
+.hm-why-card p{font-size:.86rem;line-height:1.7;color:#5a7880}
+.hm-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.hm-fcard{overflow:hidden;border-radius:28px;background:#fff;border:1px solid rgba(26,107,124,.1);box-shadow:0 26px 56px -34px rgba(11,61,78,.55);transition:transform .4s,box-shadow .4s}
+.hm-fcard:hover{transform:translateY(-8px);box-shadow:0 40px 70px -32px rgba(11,61,78,.65)}
+.hm-fvis{position:relative;overflow:hidden;height:190px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 75% 22%,rgba(255,255,255,.45),transparent 40%),linear-gradient(160deg,var(--c1),var(--c2))}
+.hm-fvis::after{content:'';position:absolute;left:0;right:0;bottom:0;height:50%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'%3E%3Cpath d='M0 10 Q15 0 30 10 T60 10 T90 10 T120 10 V20 H0Z' fill='white' fill-opacity='.18'/%3E%3C/svg%3E") repeat-x bottom/170px 30px;animation:glwave 9s linear infinite}
+.hm-fvis span{position:relative;z-index:1;font-size:4.6rem;filter:drop-shadow(0 14px 20px rgba(0,0,0,.35));transition:transform .5s}
+.hm-fcard:hover .hm-fvis span{transform:scale(1.15) rotate(-6deg)}
+.hm-fbody{padding:1.7rem 1.8rem 1.9rem}
+.hm-fbody h3{margin-bottom:.6rem;font:300 1.7rem/1.1 var(--serif);color:var(--ocean)}
+.hm-fbody p{font-size:.88rem;line-height:1.7;color:#5a7880}
+.hm-fbody a{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;font-size:.82rem;font-weight:500;color:var(--tide);text-decoration:none}
+.hm-fbody a i{font-style:normal;transition:transform .3s}
+.hm-fbody a:hover i{transform:translateX(6px)}
+.hm-promise{position:relative;overflow:hidden;padding:6rem 2rem;color:#fff;background:radial-gradient(ellipse at 85% 10%,rgba(126,207,192,.22),transparent 50%),linear-gradient(155deg,#061f28,#0B3D4E)}
+.hm-pgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+.hm-promise blockquote{position:relative;margin-top:1.4rem;font:italic 300 clamp(2rem,4vw,3.2rem)/1.25 var(--serif)}
+.hm-promise blockquote::first-line{color:#7ecfc0}
+.hm-plist>p{margin-bottom:1rem;font-size:.85rem;letter-spacing:.04em;color:rgba(255,255,255,.7)}
+.hm-plist ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.hm-plist li{display:flex;align-items:center;gap:.7rem;padding:.7rem .9rem;border-radius:14px;font-size:.84rem;line-height:1.35;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);transition:transform .3s,background .3s,border-color .3s}
+.hm-plist li:hover{transform:translateY(-4px);background:rgba(126,207,192,.15);border-color:rgba(126,207,192,.5)}
+.hm-plist li span{flex-shrink:0;width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:rgba(126,207,192,.18)}
+.hm-plist li:last-child{grid-column:span 2}
+.hm-ctasec{padding:5rem 2rem 6rem;background:linear-gradient(180deg,#0B3D4E 0%,#fff 38%)}
+.hm-cta{position:relative;overflow:hidden;text-align:center;padding:4rem 2rem;border-radius:36px;color:#fff;background:radial-gradient(ellipse at 20% 0%,rgba(143,224,208,.5),transparent 55%),linear-gradient(135deg,#17776c,#0B3D4E);box-shadow:0 50px 90px -40px rgba(11,61,78,.9)}
+.hm-cta>*{position:relative;z-index:1}
+.hm-cta-orb{position:absolute!important;border-radius:50%;filter:blur(40px);z-index:0!important}
+.hm-cta-orb.a{width:260px;height:260px;left:-60px;bottom:-80px;background:rgba(126,207,192,.35)}
+.hm-cta-orb.b{width:220px;height:220px;right:-40px;top:-70px;background:rgba(196,92,58,.3)}
+.hm-cta h2{max-width:720px;margin:0 auto .8rem;font:300 clamp(2rem,4.5vw,3.3rem)/1.15 var(--serif)}
+.hm-cta h2 em{font-style:italic;color:#b8f0e4}
+.hm-cta p{max-width:520px;margin:0 auto 2rem;font-size:1rem;line-height:1.7;color:rgba(255,255,255,.8)}
+.hm-cta-btn{display:inline-flex;align-items:center;gap:.7rem;padding:1rem 2.4rem;border-radius:3rem;font-weight:500;font-size:1rem;text-decoration:none;color:#0D1F22;background:linear-gradient(135deg,#b8f0e4,#7ecfc0);box-shadow:0 20px 40px -14px rgba(0,0,0,.5);transition:transform .3s,box-shadow .3s}
+.hm-cta-btn span{transition:transform .3s}
+.hm-cta-btn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 28px 50px -14px rgba(0,0,0,.6)}
+.hm-cta-btn:hover span{transform:translateX(6px)}
+@media(max-width:900px){
+  .hm-id{grid-template-columns:1fr 1fr}.hm-card,.hm-card.wide{grid-column:span 1}.hm-card.wide{grid-column:span 2}
+  .hm-intro,.hm-pgrid{grid-template-columns:1fr;gap:2.5rem}
+  .hm-whygrid{grid-template-columns:1fr 1fr}.hm-feat{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .hm-sec,.hm-promise{padding:4rem 1.25rem}.hm-idsec{padding:0 1.25rem 3rem;margin-top:-3.5rem}
+  .hm-id{grid-template-columns:1fr}.hm-card.wide{grid-column:span 1}
+  .hm-whygrid,.hm-plist ul{grid-template-columns:1fr}.hm-plist li:last-child{grid-column:span 1}
+  .hm-cta{padding:3rem 1.4rem;border-radius:28px}.hm-ctasec{padding:3rem 1.25rem 4rem}
+}
+
+/* ===== ABOUT UPGRADE ===== */
+#about{position:relative;overflow:hidden;background:linear-gradient(180deg,#EAF4F4,#f8fcfb)}
+#about::before{content:'';position:absolute;top:4%;left:-140px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(126,207,192,.28),transparent 70%)}
+#about .container{position:relative}
+.ab-head{max-width:720px;margin-bottom:3rem}
+.ab-duo{display:grid;grid-template-columns:1fr auto 1fr;gap:1.2rem;align-items:stretch}
+.ab-concern,.ab-response{position:relative;overflow:hidden;padding:2.2rem 2.2rem 2rem;border-radius:28px}
+.ab-concern{background:linear-gradient(160deg,#fff,#fdf1ea);border:1px solid rgba(196,92,58,.25);box-shadow:0 26px 56px -36px rgba(196,92,58,.55)}
+.ab-response{color:#fff;background:linear-gradient(150deg,#0B3D4E,#17776c);box-shadow:0 34px 66px -34px rgba(11,61,78,.85)}
+.ab-response::after{content:'';position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:30px solid rgba(255,255,255,.06)}
+.ab-tag{display:inline-block;padding:.3rem 1rem;border-radius:2rem;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase}
+.ab-concern .ab-tag{color:#a8472a;background:rgba(196,92,58,.12)}
+.ab-response .ab-tag{color:#b8f0e4;background:rgba(255,255,255,.12)}
+.ab-big{position:absolute;top:1.4rem;right:1.6rem;font-size:2.4rem;opacity:.9}
+.ab-duo p{position:relative;z-index:1;margin-top:1.3rem;font-size:.95rem;line-height:1.85}
+.ab-concern p{color:#5a4a42}
+.ab-response p{color:rgba(255,255,255,.88)}
+.ab-response mark{padding:.05rem .45rem;border-radius:8px;color:#0D1F22;background:linear-gradient(135deg,#b8f0e4,#7ecfc0);font-weight:500}
+.ab-arrow{align-self:center;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#0D1F22;background:linear-gradient(135deg,#8fe0d0,#5bb8a8);box-shadow:0 12px 24px -8px rgba(126,207,192,.8)}
+.ab-values-head{margin:4.5rem 0 1.8rem;text-align:center}
+.ab-h{font:300 clamp(1.8rem,3.5vw,2.5rem)/1.15 var(--serif);color:var(--ocean);margin-bottom:.4rem}
+.ab-h em{font-style:italic;background:linear-gradient(120deg,#1A6B7C,#2f9e8f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ab-values-head p{font-size:.92rem;color:#5a7880}
+.ab-values{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.ab-values::before{content:'';position:absolute;top:50px;left:16%;right:16%;height:2px;background:repeating-linear-gradient(90deg,#7ecfc0 0 8px,transparent 8px 16px);z-index:0}
+.ab-val{position:relative;z-index:1;overflow:hidden;padding:2rem 1.8rem;border-radius:28px;color:#fff;background:linear-gradient(155deg,var(--c1),var(--c2));box-shadow:0 30px 60px -34px rgba(11,61,78,.8);transition:transform .4s,box-shadow .4s}
+.ab-val:hover{transform:translateY(-8px);box-shadow:0 44px 70px -32px rgba(11,61,78,.9)}
+.ab-val::after{content:'';position:absolute;right:-50px;bottom:-50px;width:190px;height:190px;border-radius:50%;border:28px solid rgba(255,255,255,.08)}
+.ab-vn{position:absolute;top:1rem;right:1.4rem;font:italic 300 3.6rem/1 var(--serif);opacity:.28}
+.ab-ve{width:66px;height:66px;margin-bottom:1.4rem;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:2.1rem;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);transition:transform .4s}
+.ab-val:hover .ab-ve{transform:rotate(-8deg) scale(1.1)}
+.ab-val h4{font:italic 400 2.2rem/1 var(--serif);margin-bottom:.6rem}
+.ab-val p{position:relative;z-index:1;font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.88)}
+.ab-mission{position:relative;overflow:hidden;padding:5.5rem 2rem;background:radial-gradient(ellipse at 90% 0%,rgba(126,207,192,.2),transparent 50%),linear-gradient(155deg,#061f28,#0B3D4E)}
+.ab-mv{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+.ab-mcard{position:relative;overflow:hidden;padding:2.6rem 2.4rem;border-radius:30px;color:#fff;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(126,207,192,.3);backdrop-filter:blur(8px);transition:transform .4s}
+.ab-mcard:hover{transform:translateY(-6px)}
+.ab-mcard.light{color:var(--ocean);background:linear-gradient(145deg,#fff,#eaf4f4);border-color:transparent;box-shadow:0 40px 70px -36px rgba(0,0,0,.7)}
+.ab-mico{width:62px;height:62px;margin-bottom:1.3rem;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;background:rgba(126,207,192,.18)}
+.ab-mcard.light .ab-mico{background:linear-gradient(135deg,#EAF4F4,#cfe9e4)}
+.ab-mcard small{display:block;margin-bottom:.8rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#7ecfc0}
+.ab-mcard.light small{color:var(--tide)}
+.ab-mcard p{font:italic 300 1.55rem/1.5 var(--serif)}
+.ab-sec{padding:6rem 2rem}
+.ab-center{text-align:center;max-width:640px;margin:0 auto 3rem}
+.ab-center .section-label{justify-content:center}
+.ab-center .section-body{margin:0 auto}
+.ab-obj{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.ab-o{position:relative;overflow:hidden;padding:1.7rem 1.4rem;border-radius:24px;background:#fff;border:1px solid rgba(26,107,124,.1);box-shadow:0 20px 44px -32px rgba(11,61,78,.5);transition:transform .35s,box-shadow .35s}
+.ab-o:hover{transform:translateY(-7px);box-shadow:0 32px 56px -30px rgba(11,61,78,.6)}
+.ab-o::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7ecfc0,#1A6B7C)}
+.ab-on{position:absolute;top:1rem;right:1.2rem;font:italic 300 2rem/1 var(--serif);color:rgba(26,107,124,.18)}
+.ab-oe{width:54px;height:54px;margin-bottom:1rem;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:linear-gradient(135deg,#EAF4F4,#cfe9e4)}
+.ab-o b{display:block;font-weight:500;font-size:.9rem;line-height:1.5;color:var(--ocean)}
+.ab-o:last-child{grid-column:span 2}
+.ab-diff{background:linear-gradient(180deg,#F5EFE0,#fbf7ee)}
+.ab-dgrid{display:grid;grid-template-columns:1fr 1.05fr;gap:4rem;align-items:center}
+.ab-instead{display:flex;gap:1rem;align-items:flex-start;margin-top:1.8rem;padding:1.2rem 1.4rem;border-radius:20px;background:#fff;border:1px dashed rgba(26,107,124,.35)}
+.ab-instead span{font-size:1.4rem;color:#C45C3A}
+.ab-instead p{font:italic 400 1.2rem/1.5 var(--serif);color:var(--ocean)}
+.ab-offers{list-style:none;display:grid;gap:.75rem}
+.ab-offers li{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;border-radius:18px;background:#fff;border:1px solid rgba(26,107,124,.1);box-shadow:0 14px 30px -24px rgba(11,61,78,.5);transition:transform .3s,box-shadow .3s}
+.ab-offers li:hover{transform:translateX(8px);box-shadow:0 22px 40px -24px rgba(11,61,78,.6)}
+.ab-offers li span{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:linear-gradient(135deg,#EAF4F4,#cfe9e4)}
+.ab-offers li b{flex:1;font-weight:500;font-size:.92rem;color:var(--ocean)}
+.ab-offers li i{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:.72rem;font-weight:700;color:#fff;background:linear-gradient(135deg,#4aa56a,#2D5A27)}
+.ab-vis{background:linear-gradient(180deg,#fff,#EAF4F4)}
+.ab-vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.ab-vc{position:relative;overflow:hidden;padding:2.2rem 1.8rem 2rem;border-radius:28px;background:#fff;border:1px solid rgba(26,107,124,.1);box-shadow:0 24px 52px -34px rgba(11,61,78,.55);transition:transform .4s,box-shadow .4s}
+.ab-vc::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(160deg,var(--c1),var(--c2));opacity:.14;transition:opacity .4s,height .4s}
+.ab-vc:hover{transform:translateY(-8px);box-shadow:0 38px 64px -32px rgba(11,61,78,.65)}
+.ab-vc:hover::before{opacity:1;height:100%}
+.ab-vc>*{position:relative}
+.ab-vi{width:64px;height:64px;margin-bottom:1.2rem;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 14px 26px -12px rgba(11,61,78,.6);transition:transform .4s}
+.ab-vc:hover .ab-vi{transform:rotate(-8deg) scale(1.08);background:#fff}
+.ab-vc h3{margin-bottom:.5rem;font:400 1.5rem/1.15 var(--serif);color:var(--ocean);transition:color .4s}
+.ab-vc p{font-size:.88rem;line-height:1.7;color:#5a7880;transition:color .4s}
+.ab-vc:hover h3,.ab-vc:hover p{color:#fff}
+@media(max-width:900px){
+  .ab-duo{grid-template-columns:1fr}.ab-arrow{justify-self:center;rotate:90deg}
+  .ab-values{grid-template-columns:1fr}.ab-values::before{display:none}
+  .ab-mv,.ab-dgrid{grid-template-columns:1fr;gap:2.5rem}
+  .ab-obj{grid-template-columns:1fr 1fr}.ab-vgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .ab-sec{padding:4rem 1.25rem}.ab-mission{padding:4rem 1.25rem}
+  .ab-obj,.ab-vgrid{grid-template-columns:1fr}.ab-o:last-child{grid-column:span 1}
+  .ab-mcard{padding:2.2rem 1.5rem}.ab-mcard p{font-size:1.35rem}
+}
+</style>
+</head>
+<body>
+
+<div class="academic-badge"><strong>Academic Project 2026</strong>Tourism Website Development<br>Educational purposes only</div>
+
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Verde <span>Sanctuary</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#packages">Packages</a></li><li><a href="#story">Our Story</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#guide">Visitor Guide</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Book Now</a>
+  <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu(true)"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu">
+  <button class="mobile-close" aria-label="Close menu" onclick="toggleMenu(false)">✕</button>
+  <a href="#about">About</a><a href="#experience">Experience</a><a href="#packages">Packages</a><a href="#story">Our Story</a><a href="#gallery">Gallery</a><a href="#guide">Visitor Guide</a><a href="#booking">Book Now</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+</div>
+
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hm-bubbles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="hero-content hm-hero">
+    <div class="hero-badge">Regenerative Coastal &amp; Marine Eco-Tourism Platform</div>
+    <p class="hm-brand">Verde Sanctuary Eco-Lodge &amp; Marine Learning Hub</p>
+    <h1 class="hero-title hm-title">Your Escape Can Help <em>Restore the Coast</em></h1>
+    <p class="hm-sub">Discover a slower, more meaningful way to travel at Verde Sanctuary Eco-Lodge &amp; Marine Learning Hub. Experience the calm of the coast, learn from the marine environment, and take part in tourism activities designed to respect nature and support local communities.</p>
+    <div class="hero-actions"><a href="#experience" class="btn-primary">Explore Our Experiences</a><a href="#packages" class="btn-outline">View Eco Packages</a></div>
+    <div class="hm-pills"><span>📍 Calapan City, Oriental Mindoro</span><span>🎓 Academic tourism website concept</span></div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>scroll</div>
+  <div class="hero-wave"></div>
+</section>
+
+
+<section id="welcome" class="hm-idsec">
+  <div class="container">
+    <div class="hm-idhead"><span class="hm-chip">Website identity</span></div>
+    <div class="hm-id">
+      <div class="hm-card hm-r"><span>🌐</span><small>Website type</small><b>Regenerative coastal and marine eco-tourism platform</b></div>
+      <div class="hm-card hm-r"><span>📍</span><small>Proposed location</small><b>Calapan City, Oriental Mindoro, Philippines</b></div>
+      <div class="hm-card hm-r"><span>🎓</span><small>Project status</small><b>Academic tourism website concept</b></div>
+      <div class="hm-card hm-r wide"><span>👥</span><small>Target market</small><div class="hm-tm"><i>Eco-conscious travelers</i><i>Students</i><i>Families</i><i>Couples</i><i>Nature lovers</i><i>Small organizations</i></div></div>
+      <div class="hm-card hm-r wide"><span>🎯</span><small>Main purpose</small><b>To offer low-impact coastal experiences while promoting marine education, responsible travel, and community participation</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="intro" class="hm-sec">
+  <div class="container hm-intro">
+    <div>
+      <p class="section-label">Short introduction</p>
+      <h2 class="section-title">A slower, more meaningful way to <em>travel</em></h2>
+      <p class="section-body">Verde Sanctuary is a proposed regenerative coastal tourism destination in Calapan City, Oriental Mindoro. It combines nature-based accommodation, marine learning, mangrove exploration, and responsible visitor activities in one meaningful travel experience.</p>
+      <div class="hm-goal"><span>“</span><p>Our goal is simple: to help visitors enjoy the coast without treating it as something to consume. Every activity is designed to encourage awareness, care, and positive participation.</p></div>
+    </div>
+    <div class="hm-combo hm-r">
+      <small>All in one meaningful experience</small>
+      <div><span>🏡</span><b>Nature-based accommodation</b></div>
+      <div><span>🌊</span><b>Marine learning</b></div>
+      <div><span>🌿</span><b>Mangrove exploration</b></div>
+      <div><span>🌱</span><b>Responsible visitor activities</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="hm-sec hm-why">
+  <div class="container">
+    <div class="hm-center"><p class="section-label">Why choose us</p><h2 class="section-title">Why choose <em>Verde Sanctuary?</em></h2></div>
+    <div class="hm-whygrid"><div class="hm-why-card hm-r"><span class="hm-wn">01</span><div class="hm-wi">🧭</div><h3>Explore with purpose</h3><p>Enjoy coastal experiences that are educational, peaceful, and respectful of the natural environment.</p></div><div class="hm-why-card hm-r"><span class="hm-wn">02</span><div class="hm-wi">🌊</div><h3>Learn from the coast</h3><p>Understand how mangroves, marine habitats, and coastal communities are connected.</p></div><div class="hm-why-card hm-r"><span class="hm-wn">03</span><div class="hm-wi">♻️</div><h3>Travel responsibly</h3><p>Follow simple sustainable practices that help reduce waste and protect natural areas.</p></div><div class="hm-why-card hm-r"><span class="hm-wn">04</span><div class="hm-wi">🤝</div><h3>Support local participation</h3><p>Promote the involvement of local guides, suppliers, workers, and community members.</p></div></div>
+  </div>
+</section>
+
+<section id="featured" class="hm-sec">
+  <div class="container">
+    <div class="hm-center"><p class="section-label">Featured experiences</p><h2 class="section-title">Experiences worth <em>coming for</em></h2></div>
+    <div class="hm-feat"><article class="hm-fcard hm-r" style="--c1:#3f8a4a;--c2:#1f4a1c"><div class="hm-fvis"><span>🛶</span></div><div class="hm-fbody"><h3>Mangrove Kayaking</h3><p>Paddle through a calm mangrove environment while learning about the importance of mangroves in protecting coastlines and supporting marine life.</p><a href="#experience">Learn more <i>→</i></a></div></article><article class="hm-fcard hm-r" style="--c1:#1A6B7C;--c2:#0B3D4E"><div class="hm-fvis"><span>🔬</span></div><div class="hm-fbody"><h3>Marine Learning Session</h3><p>Join an easy-to-understand discussion about coastal ecosystems, marine conservation, and responsible tourism.</p><a href="#experience">Learn more <i>→</i></a></div></article><article class="hm-fcard hm-r" style="--c1:#ffb27a;--c2:#8f3a22"><div class="hm-fvis"><span>🌅</span></div><div class="hm-fbody"><h3>Coastal Sunset Walk</h3><p>Enjoy a peaceful walk along the coast while observing the landscape and learning about proper beach etiquette.</p><a href="#experience">Learn more <i>→</i></a></div></article></div>
+  </div>
+</section>
+
+<section id="promise" class="hm-promise">
+  <div class="container">
+    <div class="hm-pgrid">
+      <div>
+        <span class="hm-chip dark">Visitor promise</span>
+        <blockquote>Leave only footprints. Take only memories. Give back through responsible choices.</blockquote>
+      </div>
+      <div class="hm-plist">
+        <p>At Verde Sanctuary, visitors are encouraged to:</p>
+        <ul><li class="hm-r"><span>🎒</span>Bring reusable items</li><li class="hm-r"><span>🚫</span>Avoid unnecessary plastic</li><li class="hm-r"><span>🧑‍🏫</span>Follow local guides</li><li class="hm-r"><span>🐢</span>Respect wildlife</li><li class="hm-r"><span>🥾</span>Stay on designated paths</li><li class="hm-r"><span>🧹</span>Keep the coast clean</li><li class="hm-r"><span>📖</span>Learn before participating</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta" class="hm-ctasec">
+  <div class="container">
+    <div class="hm-cta hm-r">
+      <div class="hm-cta-orb a"></div><div class="hm-cta-orb b"></div>
+      <h2>Your next trip can be more than a <em>vacation.</em></h2>
+      <p>Plan a coastal experience that gives you time to rest, learn, and contribute.</p>
+      <a href="#booking" class="hm-cta-btn">Plan Your Visit <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="ab-head">
+      <p class="section-label">About Verde Sanctuary</p>
+      <h2 class="section-title">Tourism that benefits <em>visitors and destinations</em></h2>
+      <p class="section-body">Verde Sanctuary was created as a proposed tourism concept based on the idea that tourism should benefit both visitors and destinations.</p>
+    </div>
+    <div class="ab-duo">
+      <div class="ab-concern ab-r"><span class="ab-tag">The concern</span><span class="ab-big">⚠️</span><p>Many people travel to coastal areas to relax, take photographs, and enjoy outdoor activities. However, tourism can also create waste, disturb natural habitats, and place pressure on local communities when it is not properly managed.</p></div>
+      <div class="ab-arrow">→</div>
+      <div class="ab-response ab-r"><span class="ab-tag">Our response</span><span class="ab-big">🌿</span><p>Verde Sanctuary responds to this concern by combining recreation with education and environmental responsibility. It presents a tourism model where visitors are not only guests but also <mark>temporary partners</mark> in protecting the destination.</p></div>
+    </div>
+    <div class="ab-values-head"><h3 class="ab-h">Three connected <em>values</em></h3><p>The concept focuses on three connected values:</p></div>
+    <div class="ab-values"><div class="ab-val ab-r" style="--c1:#1A6B7C;--c2:#0B3D4E"><span class="ab-vn">1</span><div class="ab-ve">🌊</div><h4>Enjoy</h4><p>the coast through low-impact activities.</p></div><div class="ab-val ab-r" style="--c1:#17a08a;--c2:#0a4a50"><span class="ab-vn">2</span><div class="ab-ve">🔬</div><h4>Understand</h4><p>the coast through marine and environmental learning.</p></div><div class="ab-val ab-r" style="--c1:#3f8a4a;--c2:#1f4a1c"><span class="ab-vn">3</span><div class="ab-ve">🌱</div><h4>Care</h4><p>for the coast through responsible visitor behavior.</p></div></div>
+  </div>
+</section>
+
+<section id="mission" class="ab-mission">
+  <div class="container ab-mv">
+    <div class="ab-mcard ab-r"><div class="ab-mico">🎯</div><small>Our mission</small><p>To provide meaningful coastal tourism experiences that promote environmental awareness, responsible travel, and community participation while protecting the natural value of the destination.</p></div>
+    <div class="ab-mcard light ab-r"><div class="ab-mico">🔭</div><small>Our vision</small><p>To become a recognized model of regenerative coastal tourism where visitors, local communities, and marine ecosystems can thrive together.</p></div>
+  </div>
+</section>
+
+<section id="objectives" class="ab-sec">
+  <div class="container">
+    <div class="ab-center"><p class="section-label">Our objectives</p><h2 class="section-title">What we <em>aim to do</em></h2><p class="section-body">Verde Sanctuary aims to:</p></div>
+    <div class="ab-obj"><div class="ab-o ab-r"><span class="ab-on">01</span><div class="ab-oe">🌿</div><b>Promote low-impact coastal tourism</b></div><div class="ab-o ab-r"><span class="ab-on">02</span><div class="ab-oe">🐚</div><b>Increase visitor awareness of marine ecosystems</b></div><div class="ab-o ab-r"><span class="ab-on">03</span><div class="ab-oe">♻️</div><b>Encourage responsible waste management</b></div><div class="ab-o ab-r"><span class="ab-on">04</span><div class="ab-oe">🤝</div><b>Support local tourism participation</b></div><div class="ab-o ab-r"><span class="ab-on">05</span><div class="ab-oe">🦺</div><b>Provide safe and educational visitor experiences</b></div><div class="ab-o ab-r"><span class="ab-on">06</span><div class="ab-oe">🏛️</div><b>Encourage respect for local culture and natural resources</b></div><div class="ab-o ab-r"><span class="ab-on">07</span><div class="ab-oe">💻</div><b>Demonstrate how digital tools can improve tourism communication and customer engagement</b></div></div>
+  </div>
+</section>
+
+<section id="different" class="ab-sec ab-diff">
+  <div class="container ab-dgrid">
+    <div>
+      <p class="section-label">What makes us different?</p>
+      <h2 class="section-title">Not an ordinary <em>beach resort</em></h2>
+      <p class="section-body">Verde Sanctuary is not designed as an ordinary beach resort. It is a proposed marine learning and eco-tourism hub where every experience has an educational or environmental purpose.</p>
+      <div class="ab-instead"><span>✦</span><p>Instead of focusing only on luxury or entertainment, the destination offers:</p></div>
+    </div>
+    <ul class="ab-offers"><li class="ab-r"><span>🌲</span><b>Meaningful nature experiences</b><i>✓</i></li><li class="ab-r"><span>🧭</span><b>Guided environmental interpretation</b><i>✓</i></li><li class="ab-r"><span>♻️</span><b>Sustainable visitor practices</b><i>✓</i></li><li class="ab-r"><span>👥</span><b>Small-group activities</b><i>✓</i></li><li class="ab-r"><span>🏘️</span><b>Community-centered tourism</b><i>✓</i></li><li class="ab-r"><span>🗺️</span><b>Clear travel information</b><i>✓</i></li><li class="ab-r"><span>📝</span><b>Responsible booking and inquiry procedures</b><i>✓</i></li></ul>
+  </div>
+</section>
+
+<section id="visitors" class="ab-sec ab-vis">
+  <div class="container">
+    <div class="ab-center"><p class="section-label">Our target visitors</p><h2 class="section-title">Who we <em>welcome</em></h2></div>
+    <div class="ab-vgrid"><div class="ab-vc ab-r" style="--c1:#17a08a;--c2:#0a4a50"><div class="ab-vi">🌍</div><h3>Eco-conscious travelers</h3><p>Visitors who want to enjoy nature while reducing their environmental impact.</p></div><div class="ab-vc ab-r" style="--c1:#1A6B7C;--c2:#0B3D4E"><div class="ab-vi">🎓</div><h3>Students and educational groups</h3><p>Learners who need a practical setting for environmental education and tourism activities.</p></div><div class="ab-vc ab-r" style="--c1:#e0b45c;--c2:#8a6d3b"><div class="ab-vi">👨‍👩‍👧</div><h3>Families</h3><p>Families looking for safe, peaceful, and meaningful outdoor experiences.</p></div><div class="ab-vc ab-r" style="--c1:#ffb27a;--c2:#8f3a22"><div class="ab-vi">💑</div><h3>Couples</h3><p>Couples who prefer quiet coastal activities, sunset walks, and nature-based stays.</p></div><div class="ab-vc ab-r" style="--c1:#3f8a4a;--c2:#1f4a1c"><div class="ab-vi">🦋</div><h3>Nature lovers</h3><p>Travelers interested in mangroves, marine environments, wildlife, and outdoor exploration.</p></div><div class="ab-vc ab-r" style="--c1:#6b8fb5;--c2:#0B3D4E"><div class="ab-vi">🏢</div><h3>Small organizations</h3><p>Organizations searching for responsible team-building, learning, and community activities.</p></div></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="exp-intro">
+      <p class="section-label">Experiences & Services</p>
+      <h2 class="section-title">Five ways to learn, explore, and <em>give back</em></h2>
+      <p class="section-body">Every experience is guided, educational, and designed around responsible coastal tourism — from marine science and mangrove paddling to zero-waste travel and community learning.</p>
+    </div>
+    <div class="xp-list">
+      <article class="xp-card" style="--c1:#1A6B7C;--c2:#0B3D4E">
+        <div class="xp-side">
+          <span class="xp-num">01</span>
+          <div class="xp-emoji">🔬</div>
+          <div class="xp-meta">
+            <div><small>Duration</small><b>6 to 8 hours</b><em>Approximately</em></div>
+            <div><small>Estimated academic-project rate</small><b>₱1,500</b><em>per person</em></div>
+          </div>
+        </div>
+        <div class="xp-main">
+          <h3>Marine Biologist for a Day</h3>
+          <p>Marine Biologist for a Day is an educational coastal experience for visitors who want to understand marine environments through guided observation and discussion.</p><p>Participants learn how marine habitats support biodiversity, coastal protection, food systems, and local livelihoods.</p>
+          <h4>Experience highlights</h4>
+          <ul class="xp-hl"><li>Environmental orientation</li><li>Marine observation</li><li>Coastal ecosystem discussion</li><li>Guided interpretation</li><li>Responsible visitor briefing</li><li>Reflection activity</li></ul>
+          <h4>Recommended for</h4>
+          <div class="xp-tags"><span>Students</span><span>Families</span><span>First-time eco-tourists</span><span>Nature enthusiasts</span></div>
+          <a href="#booking" class="xp-cta" data-exp="Marine Biologist for a Day">Book this experience <span>→</span></a>
+        </div>
+      </article>
+      <article class="xp-card rev" style="--c1:#3f8a4a;--c2:#1f4a1c">
+        <div class="xp-side">
+          <span class="xp-num">02</span>
+          <div class="xp-emoji">🛶</div>
+          <div class="xp-meta">
+            <div><small>Duration</small><b>2 to 3 hours</b><em>Approximately</em></div>
+            <div><small>Estimated academic-project rate</small><b>₱850</b><em>per person</em></div>
+          </div>
+        </div>
+        <div class="xp-main">
+          <h3>Mangrove Kayaking Experience</h3>
+          <p>The Mangrove Kayaking Experience provides visitors with a calm and guided way to explore a mangrove environment. The activity highlights the role of mangroves in reducing coastal erosion, supporting marine species, and protecting communities from environmental risks.</p>
+          <h4>Experience highlights</h4>
+          <ul class="xp-hl"><li>Kayaking orientation</li><li>Safety briefing</li><li>Life vest use</li><li>Guided paddling</li><li>Mangrove interpretation</li><li>Leave-no-trace reminder</li></ul>
+          <h4>Recommended for</h4>
+          <div class="xp-tags"><span>Families</span><span>Couples</span><span>Small groups</span><span>Beginner outdoor travelers</span></div>
+          <a href="#booking" class="xp-cta" data-exp="Mangrove Kayaking Experience">Book this experience <span>→</span></a>
+        </div>
+      </article>
+      <article class="xp-card" style="--c1:#e08a5f;--c2:#a8472a">
+        <div class="xp-side">
+          <span class="xp-num">03</span>
+          <div class="xp-emoji">🌅</div>
+          <div class="xp-meta">
+            <div><small>Duration</small><b>1.5 to 2 hours</b><em>Approximately</em></div>
+            <div><small>Estimated academic-project rate</small><b>₱450</b><em>per person</em></div>
+          </div>
+        </div>
+        <div class="xp-main">
+          <h3>Coastal Sunset Walk</h3>
+          <p>The Coastal Sunset Walk is a gentle guided activity for visitors who want to enjoy the scenery while learning about coastal responsibility and tourist etiquette.</p>
+          <h4>Experience highlights</h4>
+          <ul class="xp-hl"><li>Guided coastal walk</li><li>Sunset viewing</li><li>Photography opportunity</li><li>Environmental storytelling</li><li>Beach-care reminders</li><li>Quiet reflection activity</li></ul>
+          <h4>Recommended for</h4>
+          <div class="xp-tags"><span>Couples</span><span>Families</span><span>Solo travelers</span><span>Photography enthusiasts</span></div>
+          <a href="#booking" class="xp-cta" data-exp="Coastal Sunset Walk">Book this experience <span>→</span></a>
+        </div>
+      </article>
+      <article class="xp-card rev" style="--c1:#17a08a;--c2:#0a4a50">
+        <div class="xp-side">
+          <span class="xp-num">04</span>
+          <div class="xp-emoji">♻️</div>
+          <div class="xp-meta">
+            <div><small>Duration</small><b>4 hours</b><em>Approximately</em></div>
+            <div><small>Estimated academic-project rate</small><b>₱950</b><em>per person</em></div>
+          </div>
+        </div>
+        <div class="xp-main">
+          <h3>Zero-Waste Coastal Retreat</h3>
+          <p>This retreat introduces visitors to practical ways of reducing waste during travel. Guests learn how simple choices, such as using refillable containers and avoiding unnecessary packaging, can reduce pressure on coastal destinations.</p>
+          <h4>Experience highlights</h4>
+          <ul class="xp-hl"><li>Sustainable travel orientation</li><li>Reusable-item guide</li><li>Waste reduction activity</li><li>Coastal walk</li><li>Eco-practice reflection</li><li>Responsible travel pledge</li></ul>
+          <h4>Recommended for</h4>
+          <div class="xp-tags"><span>Students</span><span>Families</span><span>Corporate or organization groups</span><span>Sustainability-focused travelers</span></div>
+          <a href="#booking" class="xp-cta" data-exp="Zero-Waste Coastal Retreat">Book this experience <span>→</span></a>
+        </div>
+      </article>
+      <article class="xp-card" style="--c1:#c0963f;--c2:#6b4a1e">
+        <div class="xp-side">
+          <span class="xp-num">05</span>
+          <div class="xp-emoji">🤝</div>
+          <div class="xp-meta">
+            <div><small>Duration</small><b>2 hours</b><em>Approximately</em></div>
+            <div><small>Estimated academic-project rate</small><b>₱600</b><em>per person</em></div>
+          </div>
+        </div>
+        <div class="xp-main">
+          <h3>Community Coastal Learning Session</h3>
+          <p>This session introduces visitors to the relationship between tourism, local communities, and coastal resources. It focuses on responsible visitor behavior and the importance of respecting local knowledge and livelihoods.</p>
+          <h4>Experience highlights</h4>
+          <ul class="xp-hl"><li>Community-based tourism discussion</li><li>Local livelihood awareness</li><li>Responsible purchasing reminders</li><li>Visitor etiquette guide</li><li>Question-and-answer session</li></ul>
+          <h4>Recommended for</h4>
+          <div class="xp-tags"><span>Educational groups</span><span>Tourism students</span><span>Community organizations</span><span>Responsible travelers</span></div>
+          <a href="#booking" class="xp-cta" data-exp="Community Coastal Learning Session">Book this experience <span>→</span></a>
+        </div>
+      </article>
+    </div>
+    <p class="xp-note">ℹ️ All amounts are estimated academic-project rates for planning purposes only. They are not final prices for an actual tourism operation.</p>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="container">
+    <div class="pkg-intro">
+      <p class="section-label">Eco Packages & Itineraries</p>
+      <h2 class="section-title">Three ways to stay and <em>restore</em></h2>
+      <p class="section-body">Each package combines lodging, guided experiences, and direct contribution to reef restoration. All prices are estimated in Philippine Peso and subject to seasonal adjustment.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-header"><div class="pkg-tag">For individuals & couples</div><div class="pkg-name">Tide Wanderer</div><div class="pkg-duration">2 Days / 1 Night</div><div class="pkg-price">₱3,500 <span>/ person</span></div></div>
+        <div class="pkg-body">
+          <p class="pkg-desc">A gentle introduction to Verde Sanctuary. Ideal for first-time visitors wanting to connect with the coast without a full multi-day commitment.</p>
+          <p class="pkg-note" style="margin:0 0 .75rem">Target market: Solo travelers, couples, weekend visitors</p>
+          <ul class="pkg-list"><li>1 night beachside lodge accommodation</li><li>Reef Learning Dive or Snorkel (2 hrs)</li><li>Intertidal Zone Survey</li><li>Breakfast and packed lunch included</li><li>Restoration contribution: 2 coral fragments</li><li>Welcome orientation and eco-briefing</li></ul>
+          <p class="pkg-excl">Excludes: transport, dinner, personal expenses</p>
+          <p class="pkg-note">Day 1: Arrive, orientation, snorkel | Day 2: Tide pool survey, depart</p>
+        </div>
+        <a href="#booking" class="pkg-cta">Inquire & Book</a>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-header tide"><div class="pkg-tag">Most popular · Students & families</div><div class="pkg-name">Reef Keeper</div><div class="pkg-duration">3 Days / 2 Nights</div><div class="pkg-price">₱6,800 <span>/ person</span></div></div>
+        <div class="pkg-body">
+          <p class="pkg-desc">The complete Verde Sanctuary experience. Dive, plant, survey, and learn alongside our resident marine biologist and restoration team.</p>
+          <p class="pkg-note" style="margin:0 0 .75rem">Target market: Families, student groups, eco-travelers</p>
+          <ul class="pkg-list"><li>2 nights eco-lodge accommodation</li><li>Coral Nursery Workshop (half day)</li><li>Mangrove Planting Walk</li><li>Reef Learning Dive or Snorkel</li><li>Marine Lab Session</li><li>All meals included (3 breakfasts, 2 lunches, 2 dinners)</li><li>Restoration contribution: 5 coral fragments</li><li>Species identification certificate</li></ul>
+          <p class="pkg-excl">Excludes: transport, personal expenses, souvenirs</p>
+          <p class="pkg-note">Day 1: Arrive, dive | Day 2: Coral nursery, lab | Day 3: Mangrove, depart</p>
+        </div>
+        <a href="#booking" class="pkg-cta">Inquire & Book</a>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-header kelp"><div class="pkg-tag">Schools & research groups</div><div class="pkg-name">Marine Scholar</div><div class="pkg-duration">5 Days / 4 Nights</div><div class="pkg-price">₱12,500 <span>/ person</span></div></div>
+        <div class="pkg-body">
+          <p class="pkg-desc">Designed for academic institutions and research teams. Includes all experiences plus structured curriculum, data tools, and a group restoration project.</p>
+          <p class="pkg-note" style="margin:0 0 .75rem">Target market: Universities, research institutions, school field trips</p>
+          <ul class="pkg-list"><li>4 nights dormitory or cabin accommodation</li><li>All 6 guided experiences included</li><li>Dedicated marine biologist facilitator</li><li>Data collection tools and field journals</li><li>All meals and snacks included</li><li>Restoration contribution: 10 coral fragments</li><li>Group project: restoration zone adoption</li><li>Completion certificates for all participants</li></ul>
+          <p class="pkg-excl">Excludes: transport, personal expenses. Min. 10 participants.</p>
+        </div>
+        <a href="#booking" class="pkg-cta">Inquire & Book</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="container">
+    <div class="sy-intro">
+      <div>
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">Tourism that <em>gives back</em></h2>
+        <p class="section-body">Regenerative tourism goes beyond reducing harm. It aims to create positive value for the destination by encouraging visitors to understand, respect, and support the environment and the local community.</p>
+      </div>
+      <div class="sy-shift">
+        <div class="sy-shift-a"><small>Not only</small><b>Reducing harm</b></div>
+        <div class="sy-shift-arrow">↓<span>goes beyond</span></div>
+        <div class="sy-shift-b"><small>But also</small><b>Creating positive value</b></div>
+      </div>
+    </div>
+
+    <div class="sy-block">
+      <h3 class="sy-h">A simple <em>cycle</em></h3>
+      <p class="sy-lead">At Verde Sanctuary, visitors are encouraged to become part of a simple cycle:</p>
+      <div class="sy-cycle"><div class="sy-step"><span class="sy-n">01</span><div class="sy-em">📖</div><h4>Learn</h4><p>Understand the coast, the community, and the importance of responsible tourism.</p></div><div class="sy-step"><span class="sy-n">02</span><div class="sy-em">🤲</div><h4>Respect</h4><p>Follow environmental guidelines and respect local people, culture, wildlife, and protected areas.</p></div><div class="sy-step"><span class="sy-n">03</span><div class="sy-em">🌱</div><h4>Participate</h4><p>Join educational, conservation, or responsible travel activities.</p></div><div class="sy-step"><span class="sy-n">04</span><div class="sy-em">📣</div><h4>Share</h4><p>Tell others about sustainable tourism and encourage better travel habits.</p></div></div>
+      <div class="sy-loop"><span>↻</span> Learn · Respect · Participate · Share — and the cycle continues</div>
+    </div>
+
+    <div class="sy-pledge" id="sy-pledge-card">
+      <div class="sy-seal">✓<small>Pledge taken</small></div>
+      <span class="sy-chip">🌊 Our visitor pledge</span>
+      <p class="sy-pledge-intro">Before beginning an activity, visitors may take the following pledge:</p>
+      <blockquote>I promise to respect the coast, follow local guidelines, avoid unnecessary waste, protect wildlife, listen to community members, and leave the destination better than I found it.</blockquote>
+      <button type="button" class="sy-pledge-btn" id="sy-pledge-btn">🌿 Take the pledge</button>
+    </div>
+
+    <div class="sy-block">
+      <h3 class="sy-h">Our sustainability <em>practices</em></h3>
+      <p class="sy-lead">Verde Sanctuary promotes the following practices:</p>
+      <div class="sy-prac"><div class="sy-p"><span>🚰</span><b>Refillable water stations</b></div><div class="sy-p"><span>♻️</span><b>Reduced single-use plastics</b></div><div class="sy-p"><span>🗂️</span><b>Proper waste segregation</b></div><div class="sy-p"><span>👥</span><b>Small-group activities</b></div><div class="sy-p"><span>🐢</span><b>Responsible wildlife observation</b></div><div class="sy-p"><span>🚲</span><b>Low-impact transportation options where available</b></div><div class="sy-p"><span>🎓</span><b>Environmental orientation for visitors</b></div><div class="sy-p"><span>🤝</span><b>Community participation</b></div><div class="sy-p"><span>📱</span><b>Digital visitor information</b></div><div class="sy-p"><span>📧</span><b>Paperless inquiry and confirmation systems</b></div></div>
+    </div>
+
+    <div class="sy-block">
+      <h3 class="sy-h">The three-question <em>visitor check</em></h3>
+      <p class="sy-lead">Before participating in an activity, ask:</p>
+      <div class="sy-qs"><div class="sy-q"><span class="sy-qn">1</span><p>Will this activity disturb wildlife or damage the environment?</p><button type="button" class="sy-qbtn"><i>✓</i> I’ve thought about this</button></div><div class="sy-q"><span class="sy-qn">2</span><p>Can I reduce the waste or resources I use?</p><button type="button" class="sy-qbtn"><i>✓</i> I’ve thought about this</button></div><div class="sy-q"><span class="sy-qn">3</span><p>How can my visit support the local community?</p><button type="button" class="sy-qbtn"><i>✓</i> I’ve thought about this</button></div></div>
+      <p class="sy-qmsg" id="sy-qmsg">Tick each question as you reflect on it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="gl-head">
+      <p class="section-label">Gallery</p>
+      <h2 class="section-title">The coast in <em>moments</em></h2>
+      <p class="section-body">Eight moments that show how responsible coastal tourism can feel — slow, respectful, and connected to the places and people around it. Tap any photo to view it larger.</p>
+    </div>
+    <div class="gl-grid">
+      <figure class="gl-item s-tall" tabindex="0" style="--a:#bfe9f0;--b:#1A6B7C">
+        <div class="gl-scene"><span class="gl-emoji">🏖️</span></div>
+        <span class="gl-tag">01</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>Where the land meets the sea</h3><p>The coast provides a peaceful space for recreation, learning, and reflection.</p></figcaption>
+      </figure>
+      <figure class="gl-item" tabindex="0" style="--a:#4aa56a;--b:#12361a">
+        <div class="gl-scene"><span class="gl-emoji">🌿</span></div>
+        <span class="gl-tag">02</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>Mangrove guardians</h3><p>Mangroves help protect coastlines and provide important habitats for marine life.</p></figcaption>
+      </figure>
+      <figure class="gl-item" tabindex="0" style="--a:#7ecfc0;--b:#0B3D4E">
+        <div class="gl-scene"><span class="gl-emoji">🛶</span></div>
+        <span class="gl-tag">03</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>Paddle with care</h3><p>Kayaking allows visitors to explore the environment without using motorized transportation.</p></figcaption>
+      </figure>
+      <figure class="gl-item s-tall" tabindex="0" style="--a:#17a0b8;--b:#072b38">
+        <div class="gl-scene"><span class="gl-emoji">🐠</span></div>
+        <span class="gl-tag">04</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>Learning beneath the surface</h3><p>Marine learning encourages visitors to understand the importance of coastal ecosystems.</p></figcaption>
+      </figure>
+      <figure class="gl-item s-wide" tabindex="0" style="--a:#f3d9a8;--b:#8a6d3b">
+        <div class="gl-scene"><span class="gl-emoji">🐚</span></div>
+        <span class="gl-tag">05</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>A slower kind of travel</h3><p>Responsible tourism gives visitors time to observe, appreciate, and respect the destination.</p></figcaption>
+      </figure>
+      <figure class="gl-item" tabindex="0" style="--a:#ffb27a;--b:#5a2a5a">
+        <div class="gl-scene"><span class="gl-emoji">🌅</span></div>
+        <span class="gl-tag">06</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>Sunset without waste</h3><p>Beautiful experiences do not require unnecessary waste or environmental damage.</p></figcaption>
+      </figure>
+      <figure class="gl-item" tabindex="0" style="--a:#e0b45c;--b:#1A6B7C">
+        <div class="gl-scene"><span class="gl-emoji">🤝</span></div>
+        <span class="gl-tag">07</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>Community and coast</h3><p>Coastal tourism is stronger when local communities are respected and included.</p></figcaption>
+      </figure>
+      <figure class="gl-item s-wide" tabindex="0" style="--a:#8fe0d0;--b:#2D5A27">
+        <div class="gl-scene"><span class="gl-emoji">🌱</span></div>
+        <span class="gl-tag">08</span><span class="gl-zoom">⤢</span>
+        <figcaption><h3>Your responsible travel moment</h3><p>Every visitor can make a positive difference through small and consistent choices.</p></figcaption>
+      </figure>
+    </div>
+    <div class="gl-credits">
+      <div class="gl-credits-head">
+        <span class="gl-credits-ico">📷</span>
+        <div><h3>Image credits</h3><p>Images used in the gallery should be original photographs or properly credited images.</p></div>
+      </div>
+      <ol class="gl-credit-list"><li><span>01</span><b>Where the land meets the sea</b><em>Photographer / source: <u>to be added</u></em></li><li><span>02</span><b>Mangrove guardians</b><em>Photographer / source: <u>to be added</u></em></li><li><span>03</span><b>Paddle with care</b><em>Photographer / source: <u>to be added</u></em></li><li><span>04</span><b>Learning beneath the surface</b><em>Photographer / source: <u>to be added</u></em></li><li><span>05</span><b>A slower kind of travel</b><em>Photographer / source: <u>to be added</u></em></li><li><span>06</span><b>Sunset without waste</b><em>Photographer / source: <u>to be added</u></em></li><li><span>07</span><b>Community and coast</b><em>Photographer / source: <u>to be added</u></em></li><li><span>08</span><b>Your responsible travel moment</b><em>Photographer / source: <u>to be added</u></em></li></ol>
+      <p class="gl-credits-foot">The visuals above are placeholders. Replace each one with an original photograph or a properly credited image, and complete its credit line here.</p>
+    </div>
+  </div>
+  <div class="gl-lb" id="gl-lb" aria-hidden="true">
+    <button class="gl-lb-x" id="gl-x" aria-label="Close">✕</button>
+    <button class="gl-lb-nav prev" id="gl-prev" aria-label="Previous">‹</button>
+    <div class="gl-lb-card">
+      <div class="gl-lb-stage" id="gl-stage"></div>
+      <div class="gl-lb-cap"><small id="gl-n"></small><h3 id="gl-t"></h3><p id="gl-d"></p></div>
+    </div>
+    <button class="gl-lb-nav next" id="gl-next" aria-label="Next">›</button>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="container">
+    <div class="gd-head">
+      <p class="section-label">Visitor Guide</p>
+      <h2 class="section-title">How to prepare for <em>your visit</em></h2>
+      <p class="section-body">Verde Sanctuary is a working coastal learning site. A little preparation makes your visit safer, more comfortable, and kinder to the reef.</p>
+    </div>
+
+    <div class="gd-card gd-pack">
+      <div class="gd-title"><span class="gd-ico">🎒</span><div><h3>Bring</h3><small>Tick items off as you pack</small></div></div>
+      <div class="gd-prog"><div class="gd-bar"><i id="gd-bar"></i></div><span id="gd-count"></span></div>
+      <div class="gd-packlist"><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">💧</span><span class="gd-lbl">Reusable water bottle</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">👜</span><span class="gd-lbl">Reusable bag</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">☀️</span><span class="gd-lbl">Sun protection</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">👕</span><span class="gd-lbl">Comfortable clothing</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">🧦</span><span class="gd-lbl">Extra clothes</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">📱</span><span class="gd-lbl">Waterproof pouch</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">👟</span><span class="gd-lbl">Comfortable footwear</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">💊</span><span class="gd-lbl">Personal medicines</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">🦟</span><span class="gd-lbl">Insect repellent</span></label><label class="gd-pack-item"><input type="checkbox"><span class="gd-box">✓</span><span class="gd-em">🧼</span><span class="gd-lbl">Personal hygiene items</span></label></div>
+    </div>
+
+    <div class="gd-row two">
+      <div class="gd-card gd-wear">
+        <div class="gd-title"><span class="gd-ico">👕</span><div><h3>Recommended clothing</h3><small>What to wear and what to skip</small></div></div>
+        <h4 class="gd-sub ok">Wear</h4>
+        <ul class="gd-list ok"><li>Comfortable lightweight clothing</li><li>Proper footwear for outdoor activities</li><li>Quick-drying clothes for water activities</li><li>Hat or cap</li><li>Modest clothing when visiting local communities</li></ul>
+        <h4 class="gd-sub no">Avoid</h4>
+        <ul class="gd-list no"><li>Slippery footwear during outdoor activities</li><li>Clothing that may restrict movement</li><li>Excessive jewelry</li><li>Items that may easily fall into the water</li></ul>
+      </div>
+      <div class="gd-card gd-weather">
+        <div class="gd-title"><span class="gd-ico">⛈️</span><div><h3>Weather and activity changes</h3><small>Conditions come first</small></div></div>
+        <p>Coastal activities depend on weather, sea conditions, and safety considerations. Verde Sanctuary may modify, postpone, or cancel an activity when conditions are unsafe.</p>
+        <div class="gd-quote">Visitor safety and environmental protection take priority over completing an itinerary.</div>
+        <div class="gd-access"><span>♿</span><div><h4>Accessibility note</h4><p>Visitors who require accessibility support should send an inquiry before booking. The availability of assistance may depend on the activity, location, weather conditions, and available facilities.</p><a href="#contact">Send an inquiry →</a></div></div>
+      </div>
+    </div>
+
+    <div class="gd-card gd-env">
+      <div class="gd-title"><span class="gd-ico">🌿</span><div><h3>Environmental reminders</h3><small>Visitors should:</small></div></div>
+      <div class="gd-tiles"><div class="gd-tile"><span>♻️</span><b>Avoid single-use plastics</b></div><div class="gd-tile"><span>🧴</span><b>Bring reusable containers</b></div><div class="gd-tile"><span>🪸</span><b>Never touch or collect marine life</b></div><div class="gd-tile"><span>🐠</span><b>Never feed wildlife</b></div><div class="gd-tile"><span>👣</span><b>Avoid stepping on sensitive habitats</b></div><div class="gd-tile"><span>🧭</span><b>Stay within designated areas</b></div><div class="gd-tile"><span>🤫</span><b>Keep noise levels low</b></div><div class="gd-tile"><span>🗑️</span><b>Take all personal waste with them</b></div><div class="gd-tile"><span>🗣️</span><b>Follow the guide’s instructions</b></div></div>
+    </div>
+
+    <div class="gd-row two">
+      <div class="gd-card gd-safe">
+        <div class="gd-title"><span class="gd-ico">🦺</span><div><h3>Safety reminders</h3><small>Follow these every time</small></div></div>
+        <ol class="gd-steps"><li>Attend the safety briefing before every activity.</li><li>Wear the required safety equipment.</li><li>Stay with your group.</li><li>Inform the guide about allergies, medical concerns, or physical limitations.</li><li>Do not enter the water during unsafe conditions.</li><li>Follow weather and sea-condition updates.</li><li>Ask for assistance when needed.</li><li>Keep emergency contact information accessible.</li></ol>
+      </div>
+      <div class="gd-card gd-etq">
+        <div class="gd-title"><span class="gd-ico">🤝</span><div><h3>Suggested visitor etiquette</h3><small>Be a respectful guest</small></div></div>
+        <ul class="gd-list ok"><li>Speak respectfully with local residents and staff.</li><li>Ask permission before photographing people.</li><li>Support local products responsibly.</li><li>Respect community spaces.</li><li>Avoid loud behavior in quiet areas.</li><li>Do not assume that every natural area is open for public access.</li><li>Follow local customs and regulations.</li></ul>
+      </div>
+    </div>
+
+    <div class="gd-budget">
+      <div class="gd-bud-head"><div><h3>💰 Estimated visitor budget</h3><p>The following is an academic planning estimate.</p></div></div>
+      <div class="gd-bud-grid"><div class="gd-bud"><span>🎟️</span><small>Activity package</small><b>₱450–₱5,500</b></div><div class="gd-bud"><span>🍽️</span><small>Personal meals</small><b>₱300–₱800</b><em>per day</em></div><div class="gd-bud"><span>🚌</span><small>Local transportation</small><b>Varies</b><em>Dependent on distance and transport option</em></div><div class="gd-bud"><span>👛</span><small>Personal expenses</small><b>Personal</b><em>Based on individual needs</em></div></div>
+      <p class="gd-bud-note">ℹ️ Visitors should confirm actual rates before traveling.</p>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="container"><div class="booking-grid">
+    <div class="booking-info">
+      <p class="section-label">Book an Experience</p>
+      <h2 class="section-title">Reserve your place in the <em>restoration</em></h2>
+      <p class="section-body">Fill in the form and our team will respond within 24 hours to confirm availability and discuss your visit in detail.</p>
+      <div class="bk-steps"><div class="bk-step"><b>1</b><span>Choose a package</span></div><div class="bk-step"><b>2</b><span>Send your inquiry</span></div><div class="bk-step"><b>3</b><span>Get confirmation</span></div></div>
+      <div class="bk-card"><h3>📝 Booking Notes</h3><ul><li>All bookings require a 50% deposit to confirm</li><li>Minimum group size of 2 for marine activities</li><li>Marine Scholar package requires minimum 10 participants</li><li>Cancellations 7+ days before arrival receive full refund</li><li>Weather-related cancellations are fully reschedulable</li></ul></div>
+      <div class="bk-card"><h3>💳 Payment Methods</h3><ul><li>GCash and Maya digital wallets accepted</li><li>Bank transfer — BPI, BDO, Metrobank</li><li>Cash on arrival for balance payments only</li></ul></div>
+      <div class="bk-card"><h3>💬 Contact Us Directly</h3><ul><li>Email: verdesanctuary.project@gmail.com</li><li>Phone: +63 900 000 0000</li><li>Hours: Mon–Sun, 8AM–5PM</li></ul></div>
+    </div>
+    <div>
+      <form class="bk-form" onsubmit="submitForm(event,'book-success')">
+        <div class="bk-form-head"><span class="bk-badge">🌊 Reservation</span><h3>Plan your visit</h3><p>Tell us a little about your trip — we'll take care of the rest.</p></div>
+        <div class="form-row">
+          <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Juan" required></div>
+          <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Dela Cruz" required></div>
+        </div>
+        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="juan@email.com" required></div>
+        <div class="form-group"><label for="phone">Mobile Number</label><input type="tel" id="phone" placeholder="+63 912 345 6789"></div>
+        <div class="form-row">
+          <div class="form-group"><label for="package">Package</label>
+            <select id="package" required><option value="">Select a package</option><option>Tide Wanderer (2D/1N) — ₱3,500/person</option><option>Reef Keeper (3D/2N) — ₱6,800/person</option><option>Marine Scholar (5D/4N) — ₱12,500/person</option><option>Marine Biologist for a Day — ₱1,500/person</option><option>Mangrove Kayaking Experience — ₱850/person</option><option>Coastal Sunset Walk — ₱450/person</option><option>Zero-Waste Coastal Retreat — ₱950/person</option><option>Community Coastal Learning Session — ₱600/person</option><option>Day experience only</option><option>Custom / group inquiry</option></select></div>
+          <div class="form-group"><label for="guests">Number of Guests</label><input type="number" id="guests" min="1" max="50" placeholder="2" required></div>
+        </div>
+        <div class="form-group"><label for="date">Preferred Arrival Date</label><input type="date" id="date" required></div>
+        <div class="form-group"><label for="affiliation">School / Organization (if applicable)</label><input type="text" id="affiliation" placeholder="University, company, or organization name"></div>
+        <div class="form-group"><label for="message">Special Requests or Questions</label><textarea id="message" placeholder="Dietary requirements, academic needs, specific activities..."></textarea></div>
+        <div class="bk-est" id="bk-est"></div>
+        <p class="form-note">⚠ Academic project notice: This form does not transmit data. No personal information is collected, stored, or processed. This is a demonstration form for educational purposes only.</p>
+        <button type="submit" class="btn-submit">Send Booking Inquiry</button>
+        <div class="bk-trust"><span>🔒 Demo only</span><span>⚡ 24-hour reply</span><span>🌿 Reef-positive</span></div>
+        <div class="success-msg" id="book-success">✓ Thank you! We'll respond within 24 hours. (Demo only — no data was sent)</div>
+      </form>
+    </div>
+  </div></div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="ct-head">
+      <p class="section-label">Contact Us</p>
+      <h2 class="section-title">Let's talk about <em>your visit</em></h2>
+      <p class="section-body">Reach the Verde Sanctuary project team through any of the channels below. We're happy to help you plan a meaningful coastal experience.</p>
+    </div>
+    <div class="ct-grid">
+      <div class="ct-info">
+        <div class="ct-brand">
+          <div class="ct-brand-icon">🌊</div>
+          <div><h3>Verde Sanctuary Eco-Lodge &amp; Marine Learning Hub</h3><span>Academic tourism concept</span></div>
+        </div>
+        <div class="ct-cards">
+          <div class="ct-card"><div class="ct-ico">📍</div><div><small>Proposed location</small><b>Calapan City, Oriental Mindoro, Philippines</b></div></div>
+          <a class="ct-card link" href="mailto:verdesanctuary.project@gmail.com"><div class="ct-ico">✉️</div><div><small>Email</small><b>verdesanctuary.project@gmail.com</b></div></a>
+          <a class="ct-card link" href="tel:+630900000000"><div class="ct-ico">📞</div><div><small>Phone</small><b>+63 900 000 0000</b></div></a>
+          <div class="ct-card"><div class="ct-ico">🕗</div><div><small>Operating hours</small><b>Monday to Sunday, 8:00 AM–5:00 PM</b><span class="ct-status" id="ct-status"></span></div></div>
+        </div>
+        <div class="ct-social">
+          <h4>Social media</h4>
+          <a href="#" class="ct-soc"><i class="fb">f</i><div><small>Facebook</small><b>Verde Sanctuary Eco-Lodge</b></div></a>
+          <a href="#" class="ct-soc"><i class="ig">ig</i><div><small>Instagram</small><b>@verdesanctuary.ph</b></div></a>
+          <a href="#" class="ct-soc"><i class="tt">tt</i><div><small>TikTok</small><b>@verdesanctuary.ph</b></div></a>
+          <p>These social media accounts are presented for academic website demonstration.</p>
+        </div>
+      </div>
+      <div class="ct-side">
+        <div class="ct-msg">
+          <span class="ct-chip">💬 Get in touch</span>
+          <h3>Send us a message</h3>
+          <p>For questions about packages, activities, visitor guidelines, or the proposed tourism concept, use the inquiry form or contact the project team through the information above.</p>
+          <div class="ct-btns">
+            <a href="#ct-form" class="ct-btn primary" onclick="setTimeout(()=>document.getElementById('cname').focus(),700)">Send an Inquiry <span>→</span></a>
+            <a href="#packages" class="ct-btn">View Packages</a>
+            <a href="#guide" class="ct-btn">Read the Visitor Guide</a>
+          </div>
+        </div>
+        <form id="ct-form" class="ct-form" onsubmit="submitForm(event,'contact-success')">
+          <h3>Inquiry form</h3>
+          <div class="form-group"><label for="cname">Your Name</label><input type="text" id="cname" placeholder="Juan Dela Cruz" required></div>
+          <div class="form-group"><label for="cemail">Email</label><input type="email" id="cemail" placeholder="juan@email.com" required></div>
+          <div class="form-group"><label for="csubject">Subject</label><select id="csubject"><option>General Inquiry</option><option>Packages and Activities</option><option>Visitor Guidelines</option><option>Academic Partnership</option><option>Media / Press</option><option>Other</option></select></div>
+          <div class="form-group"><label for="cmsg">Message</label><textarea id="cmsg" placeholder="Your message here..." required></textarea></div>
+          <p class="form-note">⚠ Academic project: This form is for demonstration only. No data is collected or transmitted.</p>
+          <button type="submit" class="btn-submit">Send Message</button>
+          <div class="success-msg" id="contact-success">✓ Message received! We'll be in touch soon. (Demo only — no data was sent)</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="faq-intro"><p class="section-label">Frequently Asked Questions</p><h2 class="section-title">Questions we hear <em>often</em></h2>
+      <p class="section-body">Quick answers to frequently asked questions about this project.</p>
+      <div class="faq-help"><div class="faq-help-icon">💬</div><h3>Still curious?</h3><p>Didn't find the answer you're looking for? Send us a message and we'll be happy to answer.</p><a href="#contact" class="faq-help-btn">Ask a question</a></div></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">Is Verde Sanctuary a real resort? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>Verde Sanctuary is a proposed eco-tourism business concept developed for an academic website project.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Where is it located? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>The proposed destination is located in Calapan City, Oriental Mindoro, Philippines.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I make a real reservation? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>No. The booking section is for academic demonstration only and does not create a real reservation.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Are the prices final? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>No. The prices are estimated academic-project rates and may change in an actual tourism operation.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Are the activities available every day? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>Activity availability would depend on weather, sea conditions, safety requirements, staffing, and environmental regulations.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What type of tourism does Verde Sanctuary promote? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>Verde Sanctuary promotes regenerative coastal tourism, marine learning, responsible travel, and community participation.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can children join the activities? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>Children may participate in suitable activities with adult supervision, subject to safety requirements and activity rules.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What happens if the weather is unsafe? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>Activities may be postponed, modified, or cancelled when conditions are unsafe.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I bring single-use plastic? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>Visitors are strongly encouraged to avoid single-use plastic and bring reusable alternatives.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Does the website collect personal information? <span class="faq-arrow">▾</span></button><div class="faq-a"><p>The inquiry form should collect only basic information necessary for the academic demonstration. Do not submit passwords, bank details, identification numbers, or other sensitive information.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer"><div class="disclaimer-grid">
+  <div><div class="disc-title">Academic Disclaimer</div><p class="disc-text">This website is an academic tourism website concept. The location, services, prices, schedules, and contact details are for educational purposes and do not represent a confirmed operating business.</p></div>
+  <div><div class="disc-title">Privacy Notice</div><p class="disc-text">This project should not collect sensitive personal information. Any inquiry information is for academic demonstration only.</p></div>
+</div></div>
+
+<footer class="site-footer">
+  <div class="ft-glow ft-glow-a"></div><div class="ft-glow ft-glow-b"></div>
+  <div class="ft-wrap">
+    <div class="ft-news">
+      <div><h3>Follow the reef's recovery</h3><p>Get restoration updates and coral spawning season notices.</p></div>
+      <form onsubmit="submitForm(event,'ft-success')">
+        <input type="email" placeholder="your@email.com" aria-label="Email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="success-msg" id="ft-success">✓ Thanks for subscribing! (Demo only — no data was sent)</div>
+    </div>
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="#home" class="ft-logo">Verde <span>Sanctuary</span></a>
+        <p class="ft-tag">Stay gentle. Explore deeply. Restore the coast.</p>
+        <p>An eco-lodge and marine learning hub concept where every visit helps the reef heal.</p>
+        <div class="ft-social"><a href="#" aria-label="Facebook">fb</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="YouTube">yt</a><a href="#" aria-label="X">tw</a></div>
+      </div>
+      <div class="ft-col"><h4>Explore</h4><ul><li><a href="#about">About Us</a></li><li><a href="#experience">Experiences</a></li><li><a href="#story">Our Story</a></li><li><a href="#gallery">Gallery</a></li></ul></div>
+      <div class="ft-col"><h4>Plan Your Visit</h4><ul><li><a href="#packages">Packages</a></li><li><a href="#guide">Visitor Guide</a></li><li><a href="#booking">Book Now</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div class="ft-col"><h4>Get in Touch</h4><ul class="ft-contact"><li>📍 Calapan City, Oriental Mindoro<small>Proposed location</small></li><li>📧 verdesanctuary.project@gmail.com</li><li>📱 +63 900 000 0000</li><li>🕗 Mon–Sun, 8AM–5PM</li></ul></div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Verde Sanctuary — Academic Tourism Project · For educational use only</p>
+      <p class="ft-made">Made with 🌊 for the coast</p>
+      <a href="#home" class="ft-top-btn" aria-label="Back to top">↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const menu=document.querySelector('.mobile-menu');
+function toggleMenu(o){menu.classList.toggle('open',o)}
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60));
+document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()=>{
+  const item=btn.parentElement,wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}));
+function submitForm(e,id){
+  e.preventDefault();
+  const s=document.getElementById(id);
+  s.style.display='block';e.target.reset();
+  setTimeout(()=>s.style.display='none',5000);
+}
+const pk=document.getElementById('package'),gs=document.getElementById('guests'),est=document.getElementById('bk-est');
+function updateEst(){
+  const m=pk.value.match(/₱([\d,]+)/),n=+gs.value;
+  if(!m||!n){est.classList.remove('show');return}
+  const t=+m[1].replace(/,/g,'')*n,f=x=>'₱'+x.toLocaleString('en-PH');
+  est.innerHTML='<div><span>Estimated total ('+n+' guest'+(n>1?'s':'')+')</span><strong>'+f(t)+'</strong></div><div><span>50% deposit to confirm</span><strong>'+f(t/2)+'</strong></div>'+(/Scholar/.test(pk.value)&&n<10?'<small>⚠ Marine Scholar requires a minimum of 10 participants.</small>':'');
+  est.classList.add('show');
+}
+pk.addEventListener('change',updateEst);gs.addEventListener('input',updateEst);
+pk.form.addEventListener('reset',()=>setTimeout(updateEst));
+document.getElementById('date').min=new Date().toISOString().split('T')[0];
+document.querySelectorAll('.xp-cta').forEach(a=>a.addEventListener('click',()=>{
+  const o=[...pk.options].find(o=>o.text.startsWith(a.dataset.exp));
+  if(o){pk.value=o.text;updateEst()}
+}));
+(function(){
+  const el=document.getElementById('ct-status');if(!el)return;
+  const hr=+new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Manila',hour:'numeric',hour12:false}).format(new Date());
+  const open=hr>=8&&hr<17;
+  el.className='ct-status '+(open?'on':'off');
+  el.textContent=open?'Open now':'Closed now · opens 8:00 AM';
+})();
+(function(){
+  const it=[...document.querySelectorAll('.gd-pack-item input')],bar=document.getElementById('gd-bar'),tx=document.getElementById('gd-count');
+  if(!it.length)return;
+  const u=()=>{const n=it.filter(i=>i.checked).length;bar.style.width=(n/it.length*100)+'%';tx.textContent=n+' of '+it.length+' packed'+(n===it.length?' 🎉':'')};
+  it.forEach(i=>i.addEventListener('change',u));u();
+})();
+(function(){
+  const card=document.getElementById('sy-pledge-card'),btn=document.getElementById('sy-pledge-btn');
+  if(btn)btn.addEventListener('click',()=>{const d=card.classList.toggle('done');btn.textContent=d?'✓ Pledge taken — thank you!':'🌿 Take the pledge'});
+  const qb=[...document.querySelectorAll('.sy-qbtn')],msg=document.getElementById('sy-qmsg');
+  qb.forEach(b=>b.addEventListener('click',()=>{
+    b.parentElement.classList.toggle('on');
+    const n=document.querySelectorAll('.sy-q.on').length;
+    msg.classList.toggle('ready',n===qb.length);
+    msg.textContent=n===qb.length?'✓ You’re ready — enjoy your activity responsibly 🌊':n+' of '+qb.length+' considered. Tick each question as you reflect on it.';
+  }));
+})();
+(function(){
+  const it=[...document.querySelectorAll('.gl-item')],lb=document.getElementById('gl-lb');
+  if(!it.length)return;
+  const st=document.getElementById('gl-stage');let cur=0;
+  function show(i){
+    cur=(i+it.length)%it.length;const e=it[cur];
+    st.innerHTML='';st.style.cssText=e.getAttribute('style');
+    st.appendChild(e.querySelector('.gl-scene').cloneNode(true));
+    document.getElementById('gl-t').textContent=e.querySelector('h3').textContent;
+    document.getElementById('gl-d').textContent=e.querySelector('p').textContent;
+    document.getElementById('gl-n').textContent=String(cur+1).padStart(2,'0')+' / '+String(it.length).padStart(2,'0');
+    lb.classList.add('open');lb.setAttribute('aria-hidden','false');
+  }
+  const close=()=>{lb.classList.remove('open');lb.setAttribute('aria-hidden','true')};
+  it.forEach((e,i)=>{e.addEventListener('click',()=>show(i));e.addEventListener('keydown',k=>{if(k.key==='Enter'||k.key===' '){k.preventDefault();show(i)}})});
+  document.getElementById('gl-x').onclick=close;
+  document.getElementById('gl-prev').onclick=()=>show(cur-1);
+  document.getElementById('gl-next').onclick=()=>show(cur+1);
+  lb.addEventListener('click',k=>{if(k.target===lb)close()});
+  document.addEventListener('keydown',k=>{if(!lb.classList.contains('open'))return;if(k.key==='Escape')close();if(k.key==='ArrowLeft')show(cur-1);if(k.key==='ArrowRight')show(cur+1)});
+})();
+document.documentElement.classList.add('js');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.section-title,.section-body,.hm-r,.ab-r,.gl-item,.gl-credits,.sy-step,.sy-p,.sy-q,.sy-pledge,.gd-card,.gd-budget,.xp-card,.exp-card,.pkg-card,.guide-card,.gallery-item,.tl-item,.story-quote,.faq-item,form').forEach(el=>{el.classList.add('reveal');io.observe(el)});
+</script>
+</body>
+</html>
